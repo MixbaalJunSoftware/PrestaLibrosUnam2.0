@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/05/2016 05:07:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controlador.Calificacionusuario" table="calificacionusuario" schema="public" optimistic-lock="version">
+        <id name="idcalificacionusr" type="int">
+            <column name="idcalificacionusr" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuarioByPrestadoridusr" class="controlador.Usuario" fetch="select">
+            <column name="prestadoridusr" />
+        </many-to-one>
+        <many-to-one name="usuarioByConsumidoridusr" class="controlador.Usuario" fetch="select">
+            <column name="consumidoridusr" />
+        </many-to-one>
+        <property name="calificacion" type="java.lang.Integer">
+            <column name="calificacion" />
+        </property>
+        <property name="comentarios" type="string">
+            <column name="comentarios" length="1024" />
+        </property>
+    </class>
+</hibernate-mapping>
