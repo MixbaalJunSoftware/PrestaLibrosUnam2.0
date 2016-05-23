@@ -31,6 +31,9 @@
     <property name="fotoLibro" type="string">
       <column name="foto_libro"/>
     </property>
+    <property name="disponible" type="boolean">
+      <column name="disponible"/>
+    </property>
     <set fetch="select" inverse="true" lazy="true" name="solicitudeses" table="solicitudes">
       <key>
         <column name="libroidlibro"/>

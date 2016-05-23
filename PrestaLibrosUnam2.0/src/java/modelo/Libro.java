@@ -20,6 +20,7 @@ public class Libro  implements java.io.Serializable {
      private String pais;
      private String descripcion;
      private String fotoLibro;
+     private Boolean disponible;
      private Set solicitudeses = new HashSet(0);
      private Set calificacionlibros = new HashSet(0);
 
@@ -30,7 +31,7 @@ public class Libro  implements java.io.Serializable {
     public Libro(int idlibro) {
         this.idlibro = idlibro;
     }
-    public Libro(int idlibro, Usuario usuario, String nombre, String autor, String genero, String editorial, String pais, String descripcion, String fotoLibro, Set solicitudeses, Set calificacionlibros) {
+    public Libro(int idlibro, Usuario usuario, String nombre, String autor, String genero, String editorial, String pais, String descripcion, String fotoLibro, Boolean disponible, Set solicitudeses, Set calificacionlibros) {
        this.idlibro = idlibro;
        this.usuario = usuario;
        this.nombre = nombre;
@@ -40,6 +41,7 @@ public class Libro  implements java.io.Serializable {
        this.pais = pais;
        this.descripcion = descripcion;
        this.fotoLibro = fotoLibro;
+       this.disponible = disponible;
        this.solicitudeses = solicitudeses;
        this.calificacionlibros = calificacionlibros;
     }
@@ -107,6 +109,15 @@ public class Libro  implements java.io.Serializable {
     public void setFotoLibro(String fotoLibro) {
         this.fotoLibro = fotoLibro;
     }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+    
     public Set getSolicitudeses() {
         return this.solicitudeses;
     }

@@ -131,6 +131,7 @@ public class CrearLibro implements Serializable{
         libro.setGenero(this.getGenero());
         libro.setPais(this.getPais());
         libro.setUsuario(usuario);
+        libro.setDisponible(true);
         if(foto == null){
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error", "Debes subir una imagen") );
