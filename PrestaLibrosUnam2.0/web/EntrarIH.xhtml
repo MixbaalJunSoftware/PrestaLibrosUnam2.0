@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Login</title>
+        <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/login.css"/>
+    </h:head>
+    <h:body>
+        <h1 id="titulo">Ingresa</h1>
+        <section class="contenedorLogin">
+                
+            <h:form class="formulario2">
+                <h:panelGrid columns="3">
+                    <h:outputText value="Correo :" id="titulo"/>
+                    <p:inputText pt:placeholder="Usuario" value="#{entrar.correo}"/>
+                    <br/>
+                    <h:outputText value="Contraseña : " />
+                    <p:password pt:placeholder="Contraseña" value="#{entrar.contrasenia}"/>
+                    <br/>
+                    <p:commandButton value=" Entrar " id="ajax" 
+                        update="msn" action="#{entrar.entrar()}" styleClass="ui-priority-primary" />
+                    <p:commandButton value="Registrate" action="registrarIH?faces-redirect=true"/>
+                </h:panelGrid>
+                <br/>
+                <h:outputText id="msn" value="#{entrar.msn}"/>
+            </h:form>
+            <h:form>
+                <p:commandLink action="PrincipalIH?faces-redirect=true" value="volver"/>
+                <br/>
+                <p:commandLink action="ContraseniaOlvidadaIH?faces-redirect=true" value="¿olvidaste tu contraseña?"/>
+            </h:form>
+                
+        </section>
+    </h:body>
+
+</html>
+

@@ -9,6 +9,14 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <filter>
+    <filter-name>primeFacesFileUploadFilter</filter-name>
+    <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    <filter-name>primeFacesFileUploadFilter</filter-name>
+    <servlet-name>facesServlet</servlet-name>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -19,6 +27,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/PrincipalIH.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

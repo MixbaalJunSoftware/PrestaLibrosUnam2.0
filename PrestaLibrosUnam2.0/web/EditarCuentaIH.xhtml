@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+    <h:head>
+        <title>Editar Cuenta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="50"></p:layoutUnit>
+                    
+                    <h:form>
+                        <p:menubar>
+                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true"/>
+                            <f:facet name="options">
+                                <p:inputText style="margin-right:10px" placeholder="Search"/>
+                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px" action="perfilIH"/>
+                                <p:commandButton  action="#{entrar.salir()}" value="salir" icon="ui-icon-enterlink"/>
+                                
+                                
+                            </f:facet>                          
+                        </p:menubar>
+                    </h:form>
+                    
+                <p:layoutUnit id="footer" position="south" size="50">
+                    
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size = "250">
+                    <h:form>
+                    <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 200px; height: 200px;" />
+                    <p:menu>
+                    <p:submenu label="Mi cuenta">
+                        <p:menuitem value="Mi cuenta" outcome="perfilIH" update="messages"/>
+                    </p:submenu>
+                   <p:submenu label="Administrar Libro">
+                      <p:menuitem value="Crear Libro" outcome="CrearLibroIH" update="messages"/>
+                      <p:menuitem value="Mis libros" outcome="MisLibrosIH" update="messages"/>
+                   </p:submenu>
+                   <p:submenu label="Solicitudes Pendientes">
+                     <p:menuitem value="Solicitudes pendientes" outcome="SolicitudesIH"/>
+                  </p:submenu>     
+                  <p:submenu label="Editar cuenta">
+                     <p:menuitem value="Editar Cuenta" outcome="EditarCuentaIH"/>
+                  </p:submenu>
+                  </p:menu>
+                  </h:form>  
+                </p:layoutUnit>    
+                    
+                <p:layoutUnit position="center" resizable="true" size="50">
+                    <h:form>
+                    <h2>Editar cuenta</h2>
+                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil2"  style="width: 200px; height: 200px;" />
+                        <p:panelGrid columns="2">
+                            <h:outputText value="Cambiar imagen:" />
+                            
+                            
+                              <h:form enctype="multipart/form-data">
+                                  <p:fileUpload fileUploadListener="#{editarUsuario.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                     sizeLimit="1000000" value="Select Images"/>
+                                                                   
+                            </h:form>
+                        </p:panelGrid>
+                        </h:form>   
+                    
+                        <h:form> 
+                        
+                        <h:outputText value="Escribe en los campos que quieras modificar"/>
+                       <p:panelGrid columns="2">
+                            <h:outputText value="Contraseña:" />
+                            <p:password id="contraseña" value="#{editarUsuario.password}" />
+                            <h:outputText value="Confirmar contraseña:" />
+                            <p:password id="ccontraseña" value="#{editarUsuario.cpassword}" />
+                            <h:outputText value="Telefono:" />
+                            <p:inputText id="phone" value="#{editarUsuario.telefono}"/>
+                            <h:outputText value="Facultad:" />
+                            <p:inputText id="fac" value="#{editarUsuario.facultad}" />
+                            <p:growl id="growl" showDetail="true" />
+                            </p:panelGrid>                        
+                        <p:commandButton  action="#{editarUsuario.editar}" value="Aceptar" actionListener="#{editarUsuario.listener}" update="growl">
+                            <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            <p:confirm header="Confirmacion" message="¿Tus datos son correctos?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                        <p:commandButton  action="#{eliminarUsuario.eliminar()}" value="Eliminar cuenta" actionListener="#{eliminarUsuario.listener}" update="growl">
+                            <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            <p:confirm header="Confirmacion" message="¿Estas seguro que deseas eliminar tu cuenta?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                         
+                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                           <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                           <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                         </p:confirmDialog>
+                        
+                        <p:commandButton  action="perfilIH" value="Cancelar"/>
+                        
+                        </h:form>
+                 </p:layoutUnit>
+              </p:layout>
+            </h:body>
+        </f:view>
+</html>

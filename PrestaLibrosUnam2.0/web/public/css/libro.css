@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/04/2016, 01:36:01 AM
+    Author     : jonathanjb
+*/
+body
+{
+    background-color: darkgray;
+}
+.contenedorLibro
+{
+    margin-top: 100px;
+    text-align: center;
+    width: 100%;
+}
+.formulario3
+{
+    background-color: black;
+    color: whitesmoke;
+    border-radius: 7px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4), 0px 0px 4px white inset, 2px 2px 2px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-align: justify;
+    vertical-align: middle;
+    width: 300px;
+}
+

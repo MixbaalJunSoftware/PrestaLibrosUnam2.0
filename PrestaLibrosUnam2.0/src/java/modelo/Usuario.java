@@ -149,7 +149,9 @@ public class Usuario  implements java.io.Serializable {
         this.calificacionusuariosForConsumidoridusr = calificacionusuariosForConsumidoridusr;
     }
 
-
+    @Override public String toString(){
+        return this.getNombre() + this.contrasenia+this.app;
+    }
 
 
 }

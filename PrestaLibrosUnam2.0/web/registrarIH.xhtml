@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <title>Registro</title>
+            <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/registrar.css"/>
+        </h:head>
+        <h:body>
+            <h1 id="title2">Registrar</h1>
+            <section class="contenedorRegistrar">
+                <h:form class="formulario">
+                    <p:growl id="growl" showDetail="true" />
+                    <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+                        <h:outputText value="Nombre* :" />
+                        <p:inputText id="counter1" value="#{registrar.nombe}">
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="Apellido Paterno* : " />
+                        <p:inputText id="counter2" value="#{registrar.app}" >
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="Apellido Materno : " />
+                        <p:inputText id="counter3" value="#{registrar.apm}" >
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="Contraseña : " />
+                        <p:password id="counter4" value="#{registrar.password}"/>                             
+                        <br/>
+                        <h:outputText value="Confirmar contraseña : " />
+                        <p:password id="counter8" value="#{registrar.cpassword}"/>                         
+                        <br/>
+                        <h:outputText value="Correo* : " />
+                        <p:inputText id="counter5" value="#{registrar.correo}" >
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="Telefono : " />
+                        <p:inputText id="counter7" value="#{registrar.telefono}"> 
+                        
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="Falcultad : " />
+                        <p:inputText id="counter6" value="#{registrar.facultad}" >
+                        </p:inputText>
+                        <br/>
+                        <p:commandButton value=" Aceptar " id="ajax" 
+                                       update="msn, growl" action="#{registrar.Registrar()}" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Cancelar" id="cancelar" action="PrincipalIH?faces-redirect=true" />
+                        </h:panelGrid>
+                        <br/>
+                        <h:outputText id="msn" value="#{registrar.msn}" />
+                </h:form>
+            </section>
+        </h:body>
+    </f:view>
+</html>

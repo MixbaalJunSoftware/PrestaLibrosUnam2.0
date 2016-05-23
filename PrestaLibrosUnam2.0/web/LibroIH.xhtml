@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>libro</title>
+        <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/libro.css"/>
+    </h:head>
+    <h:body>   
+        <section class="contenedorLibro">
+            <h:form class="formulario3">
+                <p:graphicImage value="#{entrar.libro.getFotoLibro()}" width="200" height="200"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Titulo :" id="titulo"/>
+                    <h:outputText value="#{entrar.libro.getNombre()}" id="titulo1"/>
+                    <h:outputText value="Autor :" id="autor"/>
+                    <h:outputText value="#{entrar.libro.getAutor()}" id="autor1"/>
+                    <h:outputText value="Genero :" id="genero"/>
+                    <h:outputText value="#{entrar.libro.getGenero()}" id="genero1"/>
+                    <h:outputText value="Editorial :" id="editorial"/>
+                    <h:outputText value="#{entrar.libro.getEditorial()}" id="editorial1"/>
+                    <h:outputText value="Pais :" id="pais"/>
+                    <h:outputText value="#{entrar.libro.getPais()}" id="pais1" />
+                    <h:outputText value="Descripcion :" id="descipcion"/>
+                    <h:outputText value="#{entrar.libro.getDescripcion()}" id="descipcion1"/>
+                    <p:commandButton  disabled="#{entrar.esMiLibro()}" value="solicitar" action="#{solicitarPrestamo.SolicitarPrestamo()}" update = "growl" 
+                                     actionListener="#{solicitarPrestamo.listener}">
+                        <f:attribute name="libro" value="#{entrar.libro}" />
+                        <f:attribute name="usuario" value="#{entrar.usuario}" />
+                    </p:commandButton>
+                    <p:commandButton value="regresar" action="PrincipalIH?faces-redirect=true"/>
+                    <p:growl id="growl" showDetail="true" sticky="true" />
+                </h:panelGrid>
+            </h:form>
+        </section>
+    </h:body>
+
+</html>
