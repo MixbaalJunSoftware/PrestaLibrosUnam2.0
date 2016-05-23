@@ -8,10 +8,10 @@
     <property name="hibernate.connection.username">Mixbaal</property>
     <property name="hibernate.connection.password">mixbaal</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
-    <mapping resource="controlador/Calificacionlibro.hbm.xml"/>
-    <mapping resource="controlador/Calificacionusuario.hbm.xml"/>
-    <mapping resource="controlador/Usuario.hbm.xml"/>
-    <mapping resource="controlador/Libro.hbm.xml"/>
-    <mapping resource="controlador/Solicitudes.hbm.xml"/>
+    <mapping resource="modelo/Calificacionlibro.hbm.xml"/>
+    <mapping resource="modelo/Calificacionusuario.hbm.xml"/>
+    <mapping resource="modelo/Usuario.hbm.xml"/>
+    <mapping resource="modelo/Libro.hbm.xml"/>
+    <mapping resource="modelo/Solicitudes.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

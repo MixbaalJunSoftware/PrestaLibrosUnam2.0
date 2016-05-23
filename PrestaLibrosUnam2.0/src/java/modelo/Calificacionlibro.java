@@ -1,4 +1,4 @@
-package controlador;
+package modelo;
 // Generated 17/05/2016 05:07:52 PM by Hibernate Tools 4.3.1
 
 

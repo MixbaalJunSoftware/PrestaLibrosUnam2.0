@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/05/2016 05:07:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="modelo.Usuario" optimistic-lock="version" schema="public" table="usuario">
+    <id name="idusuario" type="int">
+      <column name="idusuario"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="30" name="nombre"/>
+    </property>
+    <property name="app" type="string">
+      <column length="30" name="app"/>
+    </property>
+    <property name="apm" type="string">
+      <column length="30" name="apm"/>
+    </property>
+    <property name="correo" type="string">
+      <column length="50" name="correo" unique="true"/>
+    </property>
+    <property name="facultad" type="string">
+      <column length="50" name="facultad"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="15" name="telefono"/>
+    </property>
+    <property name="contrasenia" type="string">
+      <column length="50" name="contrasenia"/>
+    </property>
+    <property name="fotoUsr" type="string">
+      <column name="foto_usr"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="calificacionlibros" table="calificacionlibro">
+      <key>
+        <column name="usridusuario"/>
+      </key>
+      <one-to-many class="modelo.Calificacionlibro"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="solicitudeses" table="solicitudes">
+      <key>
+        <column name="usridusuario"/>
+      </key>
+      <one-to-many class="modelo.Solicitudes"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="calificacionusuariosForPrestadoridusr" table="calificacionusuario">
+      <key>
+        <column name="prestadoridusr"/>
+      </key>
+      <one-to-many class="modelo.Calificacionusuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="libros" table="libro">
+      <key>
+        <column name="usridusuario"/>
+      </key>
+      <one-to-many class="modelo.Libro"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="calificacionusuariosForConsumidoridusr" table="calificacionusuario">
+      <key>
+        <column name="consumidoridusr"/>
+      </key>
+      <one-to-many class="modelo.Calificacionusuario"/>
+    </set>
+  </class>
+</hibernate-mapping>

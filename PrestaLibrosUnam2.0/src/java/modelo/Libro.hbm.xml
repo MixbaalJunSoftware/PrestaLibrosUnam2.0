@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/05/2016 05:07:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="modelo.Libro" optimistic-lock="version" schema="public" table="libro">
+    <id name="idlibro" type="int">
+      <column name="idlibro"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="modelo.Usuario" fetch="select" name="usuario">
+      <column name="usridusuario"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="50" name="nombre"/>
+    </property>
+    <property name="autor" type="string">
+      <column length="50" name="autor"/>
+    </property>
+    <property name="genero" type="string">
+      <column length="50" name="genero"/>
+    </property>
+    <property name="editorial" type="string">
+      <column length="50" name="editorial"/>
+    </property>
+    <property name="pais" type="string">
+      <column length="50" name="pais"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="1024" name="descripcion"/>
+    </property>
+    <property name="fotoLibro" type="string">
+      <column name="foto_libro"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="solicitudeses" table="solicitudes">
+      <key>
+        <column name="libroidlibro"/>
+      </key>
+      <one-to-many class="modelo.Solicitudes"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="calificacionlibros" table="calificacionlibro">
+      <key>
+        <column name="libroidlibro"/>
+      </key>
+      <one-to-many class="modelo.Calificacionlibro"/>
+    </set>
+  </class>
+</hibernate-mapping>
