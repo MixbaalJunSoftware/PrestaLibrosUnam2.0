@@ -24,8 +24,8 @@ and open the template in the editor.
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true"/>
                             <f:facet name="options">
                                 <p:inputText style="margin-right:10px" placeholder="Search"/>
-                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px" action="perfilIH"/>
-                                <p:commandButton  action="#{entrar.salir()}" value="salir" icon="ui-icon-enterlink"/>
+                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px" action="PerfilIH?faces-redirect=true"/>
+                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink"/>
                                 
                                 
                             </f:facet>                          
@@ -40,17 +40,17 @@ and open the template in the editor.
                     <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 200px; height: 200px;" />
                     <p:menu>
                     <p:submenu label="Mi cuenta">
-                        <p:menuitem value="Mi cuenta" outcome="perfilIH" update="messages"/>
+                        <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages"/>
                     </p:submenu>
                    <p:submenu label="Administrar Libro">
-                      <p:menuitem value="Crear Libro" outcome="CrearLibroIH" update="messages"/>
-                      <p:menuitem value="Mis libros" outcome="MisLibrosIH" update="messages"/>
+                      <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages"/>
+                      <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages"/>
                    </p:submenu>
                    <p:submenu label="Solicitudes Pendientes">
-                     <p:menuitem value="Solicitudes pendientes" outcome="SolicitudesIH"/>
+                     <p:menuitem value="Solicitudes pendientes" outcome="SolicitudesIH?faces-redirect=true"/>
                   </p:submenu>     
                   <p:submenu label="Editar cuenta">
-                     <p:menuitem value="Editar Cuenta" outcome="EditarCuentaIH"/>
+                     <p:menuitem value="Editar Cuenta" outcome="EditarCuentaIH?faces-redirect=true"/>
                   </p:submenu>
                   </p:menu>
                   </h:form>  
@@ -65,7 +65,7 @@ and open the template in the editor.
                             
                             
                               <h:form enctype="multipart/form-data">
-                                  <p:fileUpload fileUploadListener="#{editarUsuario.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                  <p:fileUpload fileLimit="1" fileUploadListener="#{editarUsuario.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                                      sizeLimit="1000000" value="Select Images"/>
                                                                    
                             </h:form>
@@ -100,7 +100,7 @@ and open the template in the editor.
                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                          </p:confirmDialog>
                         
-                        <p:commandButton  action="perfilIH" value="Cancelar"/>
+                        <p:commandButton  action="PerfilIH?faces-redirect=true" value="Cancelar"/>
                         
                         </h:form>
                  </p:layoutUnit>

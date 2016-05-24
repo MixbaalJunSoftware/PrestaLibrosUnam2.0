@@ -9,7 +9,7 @@
     <f:view contentType="text/html">
         <h:head>
             <title>PrestalibrosUnam</title>
-            <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/inicio.css"/>
+            <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/>
         </h:head>
         <h:body style="background-color:#0D1351">
             <p:layout fullPage="true">
@@ -28,7 +28,7 @@
                                 <p:commandButton  action="EntrarIH?faces-redirect=true" value="Entrar" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/>
                             </c:if>
                             <c:if test="#{entrar.hayUsuario()}">
-                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px; color: whitesmoke" action="perfilIH?faces-redirect=true" />
+                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px; color: whitesmoke" action="PerfilIH?faces-redirect=true" />
                                 <p:commandButton  action="#{entrar.salir()}" value="Salir" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/><!--onclick="window.location.reload();"-->
                             </c:if>
                             </f:facet>

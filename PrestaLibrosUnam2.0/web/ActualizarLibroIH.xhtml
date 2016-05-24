@@ -11,7 +11,7 @@
         <h:form enctype="multipart/form-data">
             <p:panelGrid columns="2">
                 <h:outputText value="sube una imagen:" />  
-                <p:fileUpload fileUploadListener="#{actualizarLibro.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                <p:fileUpload fileLimit="1" fileUploadListener="#{actualizarLibro.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                                           sizeLimit="100000" value="Select Images" />                                           
             </p:panelGrid>
         </h:form>
@@ -24,7 +24,7 @@
                 <br/>
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <p:commandButton value="Actualizar" action="#{actualizarLibro.actualizarLibro}" update="growl"/>
-                <p:commandButton value="volver" action="perfilIH?faces-redirect=true"/>
+                <p:commandButton value="volver" action="PerfilIH?faces-redirect=true"/>
             </h:form>
         </f:view>
     </h:body>

@@ -55,8 +55,10 @@ public class EliminarUsuario {
          FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario eliminado", "Hasta luego!");
          FacesContext.getCurrentInstance().addMessage(null, mensaje);
     
-          Entrar en = new Entrar();
-          return en.salir();          
+//          Entrar en = new Entrar();
+//          return en.salir();   
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "PrincipalIH?faces-redirect=true";
       }catch(Exception e){
           this.setMsn("¡UPS! Ocurrio un error, vuelve a intentarlo");
           System.out.print("Ocurrio un error");

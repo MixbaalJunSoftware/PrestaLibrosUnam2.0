@@ -31,7 +31,7 @@ and open the template in the editor.
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
                             <f:facet name="options">
                                 <p:inputText style="margin-right:10px" placeholder="Search"/>
-                                <p:commandButton  action="#{entrar.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
+                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
                             </f:facet>                          
                         </p:menubar>
                     </h:form>
@@ -46,7 +46,7 @@ and open the template in the editor.
                     
                         <p:menu styleClass="ui-menubar" style="width: 210px; height: 320px; text-align: center;border-radius: 7px; margin-left: 20px">
                             <p:submenu label="Mi cuenta" style="background-color:white; color: #0D1351">
-                                <p:menuitem value="Mi cuenta" outcome="perfilIH?faces-redirect=true" update="messages" style=" color: white"/>
+                                <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style=" color: white"/>
                             </p:submenu>
                             <p:submenu label="Administrar Libro" style="background-color:white; color: #0D1351" >
                                 <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style=" color: white"/>

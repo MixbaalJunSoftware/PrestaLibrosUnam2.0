@@ -150,7 +150,7 @@ public class EditarUsuario implements Serializable{
             cpassword = "";
             telefono = "";
             facultad = "";
-            return "perfilIH?faces-redirect=true";   
+            return "PerfilIH?faces-redirect=true";   
            // return "";
             
         }catch(Exception e){

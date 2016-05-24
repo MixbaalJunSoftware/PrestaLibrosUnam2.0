@@ -183,7 +183,7 @@ public class Registrar {
                this.setMsn("Algo Fallo");
             
                System.out.printf("Algo fallo");
-               return "registrarIH?faces-redirect=true";
+               return "RegistrarIH?faces-redirect=true";
            }
          }
            else {  

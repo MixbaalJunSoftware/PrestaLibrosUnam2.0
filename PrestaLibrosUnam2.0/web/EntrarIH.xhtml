@@ -9,7 +9,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Login</title>
-        <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/login.css"/>
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/login.css"/>
     </h:head>
     <h:body>
         <h1 id="titulo">Ingresa</h1>
@@ -25,7 +25,7 @@
                     <br/>
                     <p:commandButton value=" Entrar " id="ajax" 
                         update="msn" action="#{entrar.entrar()}" styleClass="ui-priority-primary" />
-                    <p:commandButton value="Registrate" action="registrarIH?faces-redirect=true"/>
+                    <p:commandButton value="Registrate" action="RegistrarIH?faces-redirect=true"/>
                 </h:panelGrid>
                 <br/>
                 <h:outputText id="msn" value="#{entrar.msn}"/>

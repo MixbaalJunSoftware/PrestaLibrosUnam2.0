@@ -5,6 +5,7 @@
  */
 package test;
 
+import java.io.File;
 import modelo.Libro;
 import modelo.LibroDAO;
 
@@ -14,7 +15,13 @@ import modelo.LibroDAO;
  */
 public class Main {
    
-    public static void main(){
-       
-    }
+    public static void main(String[] args){
+        File miDir = new File (".");
+        try {
+            System.out.println ("Directorio actual: " + miDir.getCanonicalPath());
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }       
 }

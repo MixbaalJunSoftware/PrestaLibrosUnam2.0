@@ -5,10 +5,22 @@
  */
 package controlador;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
 /**
  *
  * @author jonathanjb
  */
+@ManagedBean
+@RequestScoped
+
 public class Salir {
+    
+    public String salir(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "PrincipalIH?faces-redirect=true";
+    }
     
 }

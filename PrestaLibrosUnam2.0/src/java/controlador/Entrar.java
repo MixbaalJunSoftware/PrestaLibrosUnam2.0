@@ -79,11 +79,11 @@ public class Entrar implements Serializable{
         return this.getUsuario()!=null;
     }
     
-    public String salir(){
-        this.setUsuario(null);
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "PrincipalIH?faces-redirect=true";
-    }
+//    public String salir(){
+//        this.setUsuario(null);
+//        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+//        return "PrincipalIH?faces-redirect=true";
+//    }
     
     public String entrar(){
         UsuarioDAO ud = new UsuarioDAO();

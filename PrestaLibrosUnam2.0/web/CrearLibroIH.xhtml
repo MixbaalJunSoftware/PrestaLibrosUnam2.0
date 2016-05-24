@@ -12,7 +12,7 @@
                 <h:form enctype="multipart/form-data">
                     <p:panelGrid columns="2">
                         <h:outputText value="sube una imagen:" />  
-                            <p:fileUpload fileUploadListener="#{crearLibro.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                        <p:fileUpload fileLimit="1" fileUploadListener="#{crearLibro.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                                           sizeLimit="100000" value="Select Images" />                                           
                     </p:panelGrid>
                 </h:form>
@@ -39,7 +39,7 @@
                     <p:commandButton id="crear" value="Crear" action="#{crearLibro.crearLibro()}" actionListener="#{crearLibro.listener}" update="growl" >
                     <f:attribute name="usuario" value="#{entrar.usuario}" />
                     </p:commandButton>
-                    <p:commandButton value="volver" action="perfilIH?faces-redirect=true"/>
+                    <p:commandButton value="volver" action="PerfilIH?faces-redirect=true"/>
                     <br/>
                 </h:form>
             </p:panel>

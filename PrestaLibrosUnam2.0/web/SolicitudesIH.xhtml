@@ -15,7 +15,7 @@ and open the template in the editor.
     <h:head>
         <title>Mis Solicitudes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/inicio.css"/> 
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/> 
     </h:head>
     <h:body>
         <p:layout fullPage="true">
@@ -26,7 +26,7 @@ and open the template in the editor.
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true"/>
                             <f:facet name="options">
                                 <p:inputText style="margin-right:10px" placeholder="Search"/>
-                                <p:commandButton  action="#{entrar.salir()}" value="salir" icon="ui-icon-enterlink"/>
+                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink"/>
                             </f:facet>                          
                         </p:menubar>
                     </h:form>
@@ -41,7 +41,7 @@ and open the template in the editor.
                     
                     <p:menu>
                     <p:submenu label="Mi cuenta">
-                        <p:menuitem value="Mi cuenta" outcome="perfilIH?faces-redirect=true" update="messages"/>
+                        <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages"/>
                     </p:submenu>
                    <p:submenu label="Administrar Libro">
                       <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages"/>
