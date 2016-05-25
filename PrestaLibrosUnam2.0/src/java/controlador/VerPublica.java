@@ -14,10 +14,14 @@ import javax.faces.bean.ManagedProperty;
 import modelo.Libro;
 import modelo.LibroDAO;
 import modelo.Usuario;
+
 /**
  *
  * @author jonathanjb
  */
+@ManagedBean
+@ViewScoped
+
 public class VerPublica implements Serializable {
    private List<Libro> libros;
     private Usuario usuario;

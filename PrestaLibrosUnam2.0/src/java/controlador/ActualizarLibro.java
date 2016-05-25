@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletContext;
 import modelo.Libro;
 import modelo.LibroDAO;
 import modelo.Usuario;
@@ -83,8 +84,6 @@ public class ActualizarLibro implements Serializable{
         return  "MisLibrosIH?faces-redirect=true";
     }
     
-    private final String destination= "/home/luis/NetBeansProjects/Mixbaal/PrestaLibrosUnam/web/public/imagenes/libros/";
-    
     public void upload (FileUploadEvent event) {
       FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
       FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -99,21 +98,23 @@ public class ActualizarLibro implements Serializable{
     
     
     public void copyFile(String fileName, InputStream in) {
-       try {
-         OutputStream out = new FileOutputStream(new File(destination + fileName));
-         int read = 0; 
-         byte[] bytes = new byte[1024]; 
-         while ((read = in.read(bytes)) != -1) {
-        out.write(bytes, 0, read);
-        this.setFoto("/public/imagenes/libros/" + fileName);
-      }
-      in.close();
-      out.flush();
-      out.close();
-      System.out.println("New file created!");
-      } catch (IOException e) {
-         System.out.println(e.getMessage());
-      }
+        try {
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String destination = (servletContext.getRealPath("/"))+"public/imagenes/libros/";  
+            OutputStream out = new FileOutputStream(new File(destination + fileName));
+            int read = 0; 
+            byte[] bytes = new byte[1024]; 
+            while ((read = in.read(bytes)) != -1) {
+            out.write(bytes, 0, read);
+            this.setFoto("/public/imagenes/libros/" + fileName);
+        }
+        in.close();
+        out.flush();
+        out.close();
+        System.out.println("New file created!");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
     
 }

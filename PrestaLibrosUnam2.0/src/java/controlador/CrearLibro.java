@@ -18,6 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletContext;
 import modelo.Usuario;
 import org.primefaces.event.FileUploadEvent;
 
@@ -167,8 +168,8 @@ public class CrearLibro implements Serializable{
     
     public void copyFile(String fileName, InputStream in) {
         try {
-            File miDir = new File (".");
-            String destination = miDir.getCanonicalPath() + "/web/public/imagenes/libros/";
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String destination = (servletContext.getRealPath("/"))+"public/imagenes/libros/";
             OutputStream out = new FileOutputStream(new File(destination + fileName));
             int read = 0; 
             byte[] bytes = new byte[1024]; 
@@ -181,7 +182,6 @@ public class CrearLibro implements Serializable{
         out.close();
         System.out.println("New file created!");
         } catch (IOException e) {
-            int i = 1/0;
             System.out.println(e.getMessage());
         }
     }   
