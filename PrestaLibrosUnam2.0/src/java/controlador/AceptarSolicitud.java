@@ -80,7 +80,7 @@ public class AceptarSolicitud implements Serializable{
         Mesage = "Tu solicitud de prestamos para el libro " + solicitud.getLibro().getNombre()+" ha sido aceptada\n"+
                          "para cualquier aclaración contacta al prestador en el correo "+solicitud.getLibro().getUsuario().getCorreo(); 
         m.sendMail(Subject, Mesage, solicitud.getUsuario().getCorreo());
-        return "perfilIH?faces-redirect=true";
+        return "PerfilIH?faces-redirect=true";
     }
 
 }

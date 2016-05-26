@@ -14,27 +14,29 @@
     <h:body>   
         <section class="contenedorLibro">
             <h:form class="formulario3">
-                <p:graphicImage value="#{entrar.libro.getFotoLibro()}" width="200" height="200"/>
-                <h:panelGrid columns="2">
-                    <h:outputText value="Titulo :" id="titulo"/>
-                    <h:outputText value="#{entrar.libro.getNombre()}" id="titulo1"/>
-                    <h:outputText value="Autor :" id="autor"/>
-                    <h:outputText value="#{entrar.libro.getAutor()}" id="autor1"/>
-                    <h:outputText value="Genero :" id="genero"/>
-                    <h:outputText value="#{entrar.libro.getGenero()}" id="genero1"/>
-                    <h:outputText value="Editorial :" id="editorial"/>
-                    <h:outputText value="#{entrar.libro.getEditorial()}" id="editorial1"/>
-                    <h:outputText value="Pais :" id="pais"/>
-                    <h:outputText value="#{entrar.libro.getPais()}" id="pais1" />
-                    <h:outputText value="Descripcion :" id="descipcion"/>
-                    <h:outputText value="#{entrar.libro.getDescripcion()}" id="descipcion1"/>
-                    <p:commandButton  disabled="#{entrar.esMiLibro()}" value="solicitar" action="#{solicitarPrestamo.SolicitarPrestamo()}" update = "growl" 
-                                     actionListener="#{solicitarPrestamo.listener}">
-                        <f:attribute name="libro" value="#{entrar.libro}" />
-                        <f:attribute name="usuario" value="#{entrar.usuario}" />
-                    </p:commandButton>
-                    <p:commandButton value="regresar" action="PrincipalIH?faces-redirect=true"/>
-                    <p:growl id="growl" showDetail="true" sticky="true" />
+                <h:panelGrid columns="2" cellpadding="4" >
+                    <p:graphicImage value="#{entrar.libro.getFotoLibro()}" width="400" height="400"/>
+                    <h:panelGrid columns="2" cellpadding="5" style="margin-bottom:20px"  width="400px">
+                        <h:outputText value="Titulo :" id="titulo"/>
+                        <h:outputText value="#{entrar.libro.getNombre()}" id="titulo1"/>
+                        <h:outputText value="Autor :" id="autor"/>
+                        <h:outputText value="#{entrar.libro.getAutor()}" id="autor1"/>
+                        <h:outputText value="Genero :" id="genero"/>
+                        <h:outputText value="#{entrar.libro.getGenero()}" id="genero1"/>
+                        <h:outputText value="Editorial :" id="editorial"/>
+                        <h:outputText value="#{entrar.libro.getEditorial()}" id="editorial1"/>
+                        <h:outputText value="Pais :" id="pais"/>
+                        <h:outputText value="#{entrar.libro.getPais()}" id="pais1" />
+                        <h:outputText value="Descripcion :" id="descipcion"/>
+                        <h:outputText value="#{entrar.libro.getDescripcion()}" id="descipcion1"/>
+                        <p:commandButton  disabled="#{entrar.esMiLibro()}" value="solicitar" action="#{solicitarPrestamo.SolicitarPrestamo()}" update = "growl" 
+                                         actionListener="#{solicitarPrestamo.listener}">
+                            <f:attribute name="libro" value="#{entrar.libro}" />
+                            <f:attribute name="usuario" value="#{entrar.usuario}" />
+                        </p:commandButton>
+                        <p:commandButton value="regresar" action="PrincipalIH?faces-redirect=true"/>
+                        <p:growl id="growl" showDetail="true" sticky="true" />
+                    </h:panelGrid>
                 </h:panelGrid>
             </h:form>
         </section>

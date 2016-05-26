@@ -7,6 +7,7 @@ package controlador;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -14,7 +15,7 @@ import javax.faces.context.FacesContext;
  * @author jonathanjb
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 
 public class Salir {
     

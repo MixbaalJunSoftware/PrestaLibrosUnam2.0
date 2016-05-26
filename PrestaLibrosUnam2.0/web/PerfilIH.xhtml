@@ -44,7 +44,7 @@ and open the template in the editor.
                     
                         <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 150px; height: 150px;" />
                     
-                        <p:menu styleClass="ui-menubar" style="width: 210px; height: 320px; text-align: center;border-radius: 7px; margin-left: 20px">
+                        <p:menu styleClass="ui-menubar" style="width: 210px; height: 390px; text-align: center;border-radius: 7px; margin-left: 20px">
                             <p:submenu label="Mi cuenta" style="background-color:white; color: #0D1351">
                                 <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style=" color: white"/>
                             </p:submenu>
@@ -61,6 +61,9 @@ and open the template in the editor.
                                 <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style=" color: white">
                                     <f:attribute name="usuario" value="#{entrar.usuario}" />
                                 </p:menuitem>                    
+                            </p:submenu>
+                            <p:submenu label="Mis Prestamos" style="background-color:white; color: #0D1351">
+                                <p:menuitem value="Mis prestamos" action="MisPrestamosIH?faces-redirect=true"  style=" color: white"/>                 
                             </p:submenu>
                         </p:menu>
                     </h:form>  

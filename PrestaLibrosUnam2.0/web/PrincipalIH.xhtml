@@ -11,12 +11,12 @@
             <title>PrestalibrosUnam</title>
             <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/>
         </h:head>
-        <h:body style="background-color:#0D1351">
+        <h:body>
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="50"></p:layoutUnit>
                     <p:growl id="messages"/>
                     <style type="text/css">
-                        .ui-menubar   {background-color: #0D1351 !important; background: blue;}
+                        .ui-menubar   {background-color:#0D1351 !important; background: blue;}
                     </style>
                     <h:form>
                         <p:menubar styleClass="ui-menubar">
@@ -29,7 +29,7 @@
                             </c:if>
                             <c:if test="#{entrar.hayUsuario()}">
                                 <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px; color: whitesmoke" action="PerfilIH?faces-redirect=true" />
-                                <p:commandButton  action="#{entrar.salir()}" value="Salir" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/><!--onclick="window.location.reload();"-->
+                                <p:commandButton  action="#{salir.salir()}" value="Salir" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/><!--onclick="window.location.reload();"-->
                             </c:if>
                             </f:facet>
                         </p:menubar>
@@ -38,28 +38,28 @@
                 
                     <!--<p:layoutUnit id="footer" position="south" size="50" style="background-color:#0D1351">
                     </p:layoutUnit>-->
-                    <p:layoutUnit id="center" position="center" size="50" style="background-color:#0D1351">
-                    <h:form class="ui-libros">
-                        <p:dataScroller value="#{verPublica.libros}" var="libro" >
-                            <f:facet name="header" id="titulo">
-                               Libros disponibles
+                    <p:layoutUnit id="center" position="center" size="50" style="text-align: center">
+                        <h:form>
+                            <p:dataScroller value="#{verPublica.libros}" var="libro" >
+                            <f:facet name="header" id="titulo" >
+                                Libros disponibles
                             </f:facet>
  
-                            <h:panelGrid columns="3" style="width:50%" class="libros" >
+                            <h:panelGrid columns="3" style="background-color: black;text-align: center;align-content: center;width:100%" class="libros"  >
                                 <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="200" height="200" />
                                 <p:outputPanel>
-                                    <h:panelGrid columns="2" cellpadding="5">
-                                        <h:outputText value="Nombre: " style="font-weight: bold"/>
-                                        <h:outputText value="#{libro.nombre}" />
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText value="Nombre: " style="font-weight: bold;color: whitesmoke" />
+                                        <h:outputText value="#{libro.nombre}" style="font-weight: bold;color: whitesmoke" />
  
-                                        <h:outputText value="Autor: " style="font-weight: bold"/>
-                                        <h:outputText value="#{libro.autor}" />
+                                        <h:outputText value="Autor: " style="font-weight: bold; color: whitesmoke"/>
+                                        <h:outputText value="#{libro.autor}" style="font-weight: bold;color: whitesmoke"/>
  
-                                        <h:outputText value="Editorial: " style="font-weight: bold"/>
-                                        <h:outputText value="#{libro.editorial}" />
+                                        <h:outputText value="Editorial: " style="font-weight: bold;color: whitesmoke"/>
+                                        <h:outputText value="#{libro.editorial}" style="font-weight: bold;color: whitesmoke"/>
                                
-                                        <h:outputText value="Genero: " style="font-weight: bold" />
-                                        <h:outputText value="#{libro.genero}" />
+                                        <h:outputText value="Genero: " style="font-weight: bold;color: whitesmoke" />
+                                        <h:outputText value="#{libro.genero}" style="font-weight: bold;color: whitesmoke" />
                                     </h:panelGrid>         
                                                           
                                 </p:outputPanel>
