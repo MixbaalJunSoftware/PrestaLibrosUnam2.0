@@ -44,27 +44,18 @@ and open the template in the editor.
                     
                         <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 150px; height: 150px;" />
                     
-                        <p:menu styleClass="ui-menubar" style="width: 210px; height: 390px; text-align: center;border-radius: 7px; margin-left: 20px">
-                            <p:submenu label="Mi cuenta" style="background-color:white; color: #0D1351">
-                                <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style=" color: white"/>
-                            </p:submenu>
-                            <p:submenu label="Administrar Libro" style="background-color:white; color: #0D1351" >
-                                <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style=" color: white"/>
-                                <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style=" color: white"/>
-                            </p:submenu>
-                            <p:submenu label="Solicitudes Pendientes" style="background-color:white; color: #0D1351">
-                                <p:menuitem value="Solicitudes pendientes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style=" color: white">
-                                    <f:attribute name="usuario" value="#{entrar.usuario}" />
-                                </p:menuitem>
-                            </p:submenu>     
-                            <p:submenu label="Editar cuenta" style="background-color:white; color: #0D1351">
-                                <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style=" color: white">
-                                    <f:attribute name="usuario" value="#{entrar.usuario}" />
-                                </p:menuitem>                    
-                            </p:submenu>
-                            <p:submenu label="Mis Prestamos" style="background-color:white; color: #0D1351">
-                                <p:menuitem value="Mis prestamos" action="MisPrestamosIH?faces-redirect=true"  style=" color: white"/>                 
-                            </p:submenu>
+                        <p:menu style="background-color: #0D1351; border-color: black;width: 215px; height: 300px; text-align: center; margin-left: 15px">
+                            <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white; width: 195px; font-size: xx-large"/>
+                            <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Solicitudes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large ">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>
+                            <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>                    
+                            <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
+                            
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>    

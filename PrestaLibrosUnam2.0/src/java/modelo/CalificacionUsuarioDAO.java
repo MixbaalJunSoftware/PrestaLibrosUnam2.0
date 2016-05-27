@@ -76,6 +76,31 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         return super.maxIndice("calificacionusuario","idcalificacionusr");
     }
     
-    
+    public List<Libro> misPrestamos(int id){
+        SessionFactory factory; 
+        List<Libro> misprestamos = null;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT * FROM libro WHERE usridusuario = "+id+" AND idlibro IN (SELECT libroidlibro FROM solicitudes WHERE aceptado = TRUE)";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Libro.class);
+            misprestamos = query.list();
+            tx.commit();
+            return misprestamos;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return null; 
+        }finally {
+            session.close(); 
+        } 
+    }
     
 }

@@ -90,7 +90,7 @@ public class CalificacionLibroDAO extends AbstractDAO {
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String sql = "SELECT * FROM libro WHERE usridusuario = "+id+" AND idlibro IN (SELECT libroidlibro FROM solicitudes WHERE aceptado = TRUE)";
+            String sql = "SELECT * FROM libro WHERE idlibro IN (SELECT libroidlibro FROM solicitudes WHERE aceptado = TRUE AND usridusuario = "+id+" )";
             SQLQuery query = session.createSQLQuery(sql);
             query.addEntity(Libro.class);
             misprestamos = query.list();

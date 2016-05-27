@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package controlador;
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,8 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
-import modelo.CalificacionLibroDAO;
-import modelo.Calificacionlibro;
+import modelo.CalificacionUsuarioDAO;
 import modelo.Libro;
 import modelo.Usuario;
 /**
@@ -43,7 +41,7 @@ public class MisPrestamos {
     }
     @PostConstruct
     public void misPrestamos() {
-        CalificacionLibroDAO lib = new CalificacionLibroDAO();
+        CalificacionUsuarioDAO lib = new CalificacionUsuarioDAO();
         usuario = (Usuario)sesion.getAttribute("usuario");
         libros = lib.misPrestamos(usuario.getIdusuario());
     }

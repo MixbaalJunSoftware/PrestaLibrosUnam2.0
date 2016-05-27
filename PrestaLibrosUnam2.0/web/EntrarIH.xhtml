@@ -16,24 +16,24 @@
         <section class="contenedorLogin">
                 
             <h:form class="formulario2">
-                <h:panelGrid columns="3">
-                    <h:outputText value="Correo :" id="titulo"/>
-                    <p:inputText pt:placeholder="Usuario" value="#{entrar.correo}"/>
+                <h:panelGrid columns="3" width="400">
+                    <h:outputText value="Correo :" id="titulo" style="font-weight: bold"/>
+                    <p:inputText pt:placeholder="Correo" value="#{entrar.correo}" style="font-weight: bold"/>
                     <br/>
-                    <h:outputText value="Contraseña : " />
-                    <p:password pt:placeholder="Contraseña" value="#{entrar.contrasenia}"/>
+                    <h:outputText value="Contraseña : " style="font-weight: bold"/>
+                    <p:password pt:placeholder="Contraseña" value="#{entrar.contrasenia}" style="font-weight: bold"/>
                     <br/>
                     <p:commandButton value=" Entrar " id="ajax" 
-                        update="msn" action="#{entrar.entrar()}" styleClass="ui-priority-primary" />
-                    <p:commandButton value="Registrate" action="RegistrarIH?faces-redirect=true"/>
+                        update="msn" action="#{entrar.entrar()}" styleClass="ui-priority-primary" style=" font-weight: bold; background-color: black; color: whitesmoke"/>
+                    <p:commandButton value="Registrate" action="RegistrarIH?faces-redirect=true" style="font-weight: bold; background-color:  black; color: whitesmoke"/>
                 </h:panelGrid>
                 <br/>
-                <h:outputText id="msn" value="#{entrar.msn}"/>
+                <h:outputText id="msn" value="#{entrar.msn}" style="font-weight: bold"/>
             </h:form>
             <h:form>
-                <p:commandLink action="PrincipalIH?faces-redirect=true" value="volver"/>
-                <br/>
-                <p:commandLink action="ContraseniaOlvidadaIH?faces-redirect=true" value="¿olvidaste tu contraseña?"/>
+                <p:commandLink action="PrincipalIH?faces-redirect=true" value="volver" style="font-weight: bold; color: whitesmoke"/>
+                <br/> 
+                <p:commandLink action="ContraseniaOlvidadaIH?faces-redirect=true" value="¿olvidaste tu contraseña?" style="font-weight: bold; color: whitesmoke"/>
             </h:form>
                 
         </section>

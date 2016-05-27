@@ -65,7 +65,7 @@ and open the template in the editor.
                                Mis Prestamos
                             </f:facet>
                          
-                         <h:panelGrid columns="3" style="width:70%">   
+                        <h:panelGrid columns="3" style="width:70%;text-align: center;align-content: center" cellpadding="5">   
                             <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="200" height="200" />
                             <p:outputPanel >
                                 <h:panelGrid columns="2" cellpadding="4" >
@@ -79,8 +79,11 @@ and open the template in the editor.
                                    <h:outputText value="#{libro.editorial}" />
                                 </h:panelGrid>         
                             </p:outputPanel>
-                             
-                         </h:panelGrid>
+                            <h:panelGrid columns="2"  cellpadding="5">
+                                <p:commandButton value="Reactivar" action="#"/>
+                                <p:commandButton value="Calificar Usuario" action="#"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
                        </p:dataScroller>
                      </h:form>
                 </p:layoutUnit>
