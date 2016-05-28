@@ -22,34 +22,34 @@ and open the template in the editor.
                     <p:growl id="growl" showDetail="true" />
                     <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
                         <h:outputText value="Nombre* :" />
-                        <p:inputText id="counter1" value="#{registrar.nombe}">
+                        <p:inputText id="counter1" value="#{registrar.nombe}" placeholder="Nombre" onkeypress="return permite(event, 'car')" >
                         </p:inputText>
                         <br/>
                         <h:outputText value="Apellido Paterno* : " />
-                        <p:inputText id="counter2" value="#{registrar.app}" >
+                        <p:inputText id="counter2" value="#{registrar.app}" placeholder="Materno" onkeypress="return permite(event, 'car')">
                         </p:inputText>
                         <br/>
                         <h:outputText value="Apellido Materno : " />
-                        <p:inputText id="counter3" value="#{registrar.apm}" >
+                        <p:inputText id="counter3" value="#{registrar.apm}" placeholder="Matermo" onkeypress="return permite(event, 'car')" >
                         </p:inputText>
                         <br/>
                         <h:outputText value="Contraseña : " />
-                        <p:password id="counter4" value="#{registrar.password}"/>                             
+                        <p:password id="counter4" value="#{registrar.password}" placeholder="Contrasenia" />                             
                         <br/>
                         <h:outputText value="Confirmar contraseña : " />
-                        <p:password id="counter8" value="#{registrar.cpassword}"/>                         
+                        <p:password id="counter8" value="#{registrar.cpassword}" placeholder="Contraseña" />                         
                         <br/>
                         <h:outputText value="Correo* : " />
-                        <p:inputText id="counter5" value="#{registrar.correo}" >
+                        <p:inputText id="counter5" value="#{registrar.correo}" placeholder="Correo" onkeypress="return permite(event, 'cor')" >
                         </p:inputText>
                         <br/>
                         <h:outputText value="Telefono : " />
-                        <p:inputText id="counter7" value="#{registrar.telefono}"> 
+                        <p:inputText id="counter7" value="#{registrar.telefono}" placeholder="Telefono" onkeypress="return permite(event, 'num')" maxlength="13"> 
                         
                         </p:inputText>
                         <br/>
                         <h:outputText value="Falcultad : " />
-                        <p:inputText id="counter6" value="#{registrar.facultad}" >
+                        <p:inputText id="counter6" value="#{registrar.facultad}" placeholder="Facultad" onkeypress="return permite(event, 'car')">
                         </p:inputText>
                         <br/>
                         <p:commandButton value=" Aceptar " id="ajax" 
@@ -60,6 +60,54 @@ and open the template in the editor.
                         <h:outputText id="msn" value="#{registrar.msn}" />
                 </h:form>
             </section>
+        
+            <script type="text/javascript">
+                function permite(elEvento, permitidos) {
+                    // Variables que definen los caracteres permitidos
+                    var numeros = "0123456789";
+                    var caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+                    var numeros_caracteres = numeros + caracteres;
+                    var teclas_especiales = [8, 37, 39, 46];
+                    var correo = caracteres + numeros + "@._-";
+                    // 8 = BackSpace, 46 = Supr, 37 = flecha izquierda, 39 = flecha derecha
+ 
+ 
+                    // Seleccionar los caracteres a partir del parámetro de la función
+                    switch(permitidos) {
+                        case 'num':
+                            permitidos = numeros;
+                            break;
+                        case 'car':
+                            permitidos = caracteres;
+                            break;
+                        case 'num_car':
+                            permitidos = numeros_caracteres;
+                            break;
+                        case 'cor':
+                            permitidos = correo;
+                    }
+ 
+                    // Obtener la tecla pulsada 
+                    var evento = elEvento || window.event;
+                    var codigoCaracter = evento.charCode || evento.keyCode;
+                    var caracter = String.fromCharCode(codigoCaracter);
+ 
+                    // Comprobar si la tecla pulsada es alguna de las teclas especiales
+                    // (teclas de borrado y flechas horizontales)
+                    var tecla_especial = false;
+                    for(var i in teclas_especiales) {
+                        if(codigoCaracter === teclas_especiales[i]) {
+                            tecla_especial = true;
+                            break;
+                        }
+                    }
+ 
+                    // Comprobar si la tecla pulsada se encuentra en los caracteres permitidos
+                    // o si es una tecla especial
+                    return permitidos.indexOf(caracter) !== -1 || tecla_especial;
+                }
+            </script>
         </h:body>
     </f:view>
+    
 </html>

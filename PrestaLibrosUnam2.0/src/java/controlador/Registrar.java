@@ -183,7 +183,9 @@ public class Registrar {
                this.setMsn("Algo Fallo");
             
                System.out.printf("Algo fallo");
-               return "RegistrarIH?faces-redirect=true";
+               FacesContext context = FacesContext.getCurrentInstance();
+               context.addMessage(null, new FacesMessage("Error", "Algo Fallo") );
+               return "RegistrarIH";
            }
          }
            else {  

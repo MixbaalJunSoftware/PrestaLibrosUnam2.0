@@ -103,4 +103,31 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         } 
     }
     
+    public int consumidor(int libro,int prestador){
+        SessionFactory factory; 
+        int consumidor =-1; 
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT usridusuario FROM solicitudes WHERE libroidlibro =" +libro;
+            SQLQuery query = session.createSQLQuery(sql);
+            //query.addEntity(Libro.class);
+            consumidor = (int)query.uniqueResult();
+            tx.commit();
+            return consumidor;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return -1; 
+        }finally {
+            session.close(); 
+        }
+    }
+    
 }

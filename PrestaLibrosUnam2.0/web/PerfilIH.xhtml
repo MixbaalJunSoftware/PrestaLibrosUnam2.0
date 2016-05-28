@@ -16,7 +16,7 @@ and open the template in the editor.
     <h:head>
         <title>Perfil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="/PrestaLibrosUnam/public/css/inicio.css"/> 
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/> 
     </h:head>
     <h:body>
         <c:if test="#{entrar.hayUsuario()}">
@@ -60,43 +60,33 @@ and open the template in the editor.
                     </h:form>  
                 </p:layoutUnit>    
                     
-                <p:layoutUnit position="center" resizable="true" size="50">
-                       <h:outputText value="Bienvenido usuario #{entrar.usuario.getNombre()}" />
-                       <br/>
-                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 200px; height: 200px;" />
-                      <br/>
-                      <br/>
-                      <br/>
-                        <h:outputText value="Nombre:"/>
-                        <br/>
-                       <h:outputText value="#{entrar.usuario.getNombre()}" />
-                       <br/>
-                       <br/>
-                       <h:outputText value="Apellido paterno:"/>
-                       <br/>
-                       <h:outputText value="#{entrar.usuario.getApp()}" />
-                       <br/>
-                       <br/>
-                       <h:outputText value="Apellido materno:"/>
-                       <br/>
-                       <h:outputText value="#{entrar.usuario.getApm()}" />
-                       <br/>
-                       <br/>
-                       <h:outputText value="Correo:"/>
-                       <br/>
-                       <h:outputText value="#{entrar.usuario.getCorreo()}" />
-                       <br/>
-                       <br/>
-                       <h:outputText value="Facultad:"/>
-                       <br/>
-                       <h:outputText value="#{entrar.usuario.getFacultad()}" /> 
-                       <br/>
-                       <br/>
-                       <h:outputText value="Telefono:"/>
-                       <br/>
-                       <h:outputText value="#{entrar.usuario.getTelefono()}" /> 
-                 </p:layoutUnit> 
-                <p:growl id="growl" showDetail="true" sticky="true" />                 
+                <p:layoutUnit position="center" resizable="true" size="50" style=" border-color: black; ">
+                    <h:outputText value="Bienvenido usuario #{entrar.usuario.getNombre()}" style=" font-size: 50px"/>
+                    <h:form style=" vertical-align: middle"> 
+                        <p:growl id="growl" showDetail="true" sticky="true" />
+                        <h:panelGrid columns="2" cellpadding="20" style="  height:100px">
+                            <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 200px; height: 200px;" />
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText value="Nombre:"/>
+                                    <h:outputText value="#{entrar.usuario.getNombre()}" />
+                                    <h:outputText value="Apellido paterno:"/>
+                                    <h:outputText value="#{entrar.usuario.getApp()}" />
+                                    <h:outputText value="Apellido materno:"/>
+                                    <h:outputText value="#{entrar.usuario.getApm()}" />
+                                    <h:outputText value="Correo:"/>
+                                    <h:outputText value="#{entrar.usuario.getCorreo()}" />
+                                    <h:outputText value="Facultad:"/>
+                                    <h:outputText value="#{entrar.usuario.getFacultad()}" /> 
+                                    <h:outputText value="Telefono:"/>
+                                    <h:outputText value="#{entrar.usuario.getTelefono()}" /> 
+                                </h:panelGrid>
+                            </p:outputPanel>    
+                        </h:panelGrid>
+                    </h:form>
+                </p:layoutUnit> 
+                
+                
          </p:layout>
          </c:if>
        </h:body>

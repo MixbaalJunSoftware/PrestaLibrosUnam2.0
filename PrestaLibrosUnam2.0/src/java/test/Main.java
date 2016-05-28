@@ -6,6 +6,7 @@
 package test;
 
 import java.io.File;
+import modelo.CalificacionUsuarioDAO;
 import modelo.Libro;
 import modelo.LibroDAO;
 
@@ -16,12 +17,17 @@ import modelo.LibroDAO;
 public class Main {
    
     public static void main(String[] args){
-        File miDir = new File (".");
+        /*File miDir = new File (".");
         try {
             System.out.println ("Directorio actual: " + miDir.getCanonicalPath());
         }
         catch(Exception e) {
             e.printStackTrace();
         }
+        */
+        
+        CalificacionUsuarioDAO cu = new CalificacionUsuarioDAO();
+        int c = cu.consumidor(3, 3);
+        System.out.println(c);
     }       
 }
