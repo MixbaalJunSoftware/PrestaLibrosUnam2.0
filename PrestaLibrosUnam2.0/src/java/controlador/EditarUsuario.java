@@ -42,6 +42,7 @@ public class EditarUsuario implements Serializable{
   private String cpassword;//confirmacion de la contraseña
   private String telefono;//Teleffono del usuario.
   private String facultad;//Facultad del usuario. 
+  private String foto; //Foto del usuario.
   private String msn;  
   private boolean modificado;
  
@@ -110,6 +111,16 @@ public class EditarUsuario implements Serializable{
     public void setCpassword(String cpassword) {
         this.cpassword = cpassword;
     }   
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
+    
     
     public void listener(ActionEvent event){
         System.out.println("si inicializó al usuario");
@@ -140,6 +151,10 @@ public class EditarUsuario implements Serializable{
                usuario.setFacultad(this.getFacultad());
                modificado = true;
         }
+        if (this.getFoto()!= null && !this.getFoto().equals("")){
+            usuario.setFotoUsr(this.getFoto());
+            modificado = true;
+        }
         if (modificado){
             try{   
             usr.update(usuario);
@@ -151,6 +166,7 @@ public class EditarUsuario implements Serializable{
             cpassword = "";
             telefono = "";
             facultad = "";
+            foto = "";
             return "PerfilIH?faces-redirect=true";   
            // return "";
             
@@ -179,11 +195,13 @@ public class EditarUsuario implements Serializable{
       // Do what you want with the file
        try {
          copyFile(String.valueOf(usuario.getIdusuario()), event.getFile().getInputstream());
-         
+         System.out.print("hizo algo");
+         this.setMsn("Actualización con éxito");
        } catch (IOException e) {
          FacesMessage msg2 = new FacesMessage("Is NOT Succesful", event.getFile().getFileName() + " is not uploaded.");
          FacesContext.getCurrentInstance().addMessage(null, msg);
-        
+         this.setMsn("Ocurrió un error, vuelve a intentarlo");
+         
         }
        
     }
@@ -198,24 +216,21 @@ public class EditarUsuario implements Serializable{
             byte[] bytes = new byte[1024]; 
             while ((read = in.read(bytes)) != -1) {
             out.write(bytes, 0, read);
-            UsuarioDAO ud = new UsuarioDAO();
-            usuario.setFotoUsr("/public/imagenes/" + fileName);
-            ud.update(usuario);
+            //UsuarioDAO ud = new UsuarioDAO();
+            //usuario.setFotoUsr("/public/imagenes/" + fileName);
+            //ud.update(usuario);
+            this.setFoto("/public/imagenes/" + fileName);
+           // this.setMsn("Actualización con éxito");
         }
         in.close();
         out.flush();
         out.close();
         System.out.println("New file created!");
-        redirige(true);
+       
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            redirige(false);
+           
         }
     } 
     
-    public String redirige(boolean bool){
-        if (bool)
-            return "perfilIH?faces-redirect=true"; 
-         return "EditarCuentaIH?faces-redirect=true";            
-    }
 }

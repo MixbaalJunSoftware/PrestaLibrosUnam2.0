@@ -1,5 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -23,10 +28,10 @@
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: white;"/>
                             <f:facet name="options">
                                 
-                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
-                                <p:commandButton value="Buscar"  onclick="#{buscar.buscar()}" action="ResultadosIH?faces-redirect=true" style="font-weight: bold; background-color: whitesmoke; color: black">
-                            </p:commandButton>   
-                                
+                                <p:inputText style="margin-right:10px" id="busc" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" onclick="#{buscar.buscar()}" action="ResultadosIH?faces-redirect=true"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                                   
+                               
                             <c:if test="#{!entrar.hayUsuario()}">
                                 <p:commandButton  action="EntrarIH?faces-redirect=true" value="Entrar" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/>
                             </c:if>
@@ -42,9 +47,9 @@
                     
                     <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" >
                         <h:form >
-                            <p:dataScroller value="#{verPublica.libros}" var="libro" style="background: #0D1351">
+                            <p:dataScroller value="#{buscar.libros}" var="libro" style="background: #0D1351">
                                 <f:facet name="header" id="titulo" class="Principal" >
-                                Libros disponibles
+                                Resultados de busqueda
                             </f:facet>
  
                             <h:panelGrid columns="3" style="background-color: black;text-align: left;align-content: center;width:100%" class="libros"  >

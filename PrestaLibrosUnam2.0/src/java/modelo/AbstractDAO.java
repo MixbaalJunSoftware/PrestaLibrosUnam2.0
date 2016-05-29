@@ -107,6 +107,23 @@ public abstract class AbstractDAO {
         return objects;
     }
     
+    protected List buscaNormal(Class clazz, String bus){
+        List objects = null;
+        try{
+            startOperation();
+            //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + bus + "%'");
+           // System.out.print(query);
+            objects = query.list();
+            tx.commit();
+        } catch(HibernateException e){
+            handleException(e);            
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;        
+    }
+    
     protected void handleException(HibernateException e) throws DataAccessLayerException {
         HibernateFactory.rollback(tx);
         throw new DataAccessLayerException(e);
