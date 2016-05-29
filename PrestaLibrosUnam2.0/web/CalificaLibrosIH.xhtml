@@ -5,12 +5,32 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Calificalibro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/calificacion.css"/>
+    </h:head>
+    <h:body>
+        <!--<c:if test="#{entrar.hayUsuario()}">-->
+        <section class="contenedorCalificacion">
+            <h:form class="formulario4">
+                <h:panelGrid columns="2" cellpadding="4" >
+                    <h:outputText value="Puntaje:" />
+                    <p:rating value="#{calificaLibro.calificacion}" stars="5" cancel="false" />
+                    <h:outputText value="Comentario"/>
+                    <p:inputTextarea value="#{calificaLibro.comentarios}" placeholder="Agrega un comentario" rows="6" cols="33"/>
+                    <p:commandButton action="#{calificaLibro.calificarl()}" value="califica"/>
+                </h:panelGrid>
+                
+            </h:form>
+        </section>
+        <!--</c:if>-->
+    </h:body>
 </html>

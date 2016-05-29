@@ -37,14 +37,14 @@
                     
                     
                     
-                    <p:layoutUnit id="center" position="center" style="text-align: center">
+                    <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" >
                         <h:form >
-                            <p:dataScroller value="#{verPublica.libros}" var="libro" style=" width: max-content">
+                            <p:dataScroller value="#{verPublica.libros}" var="libro">
                             <f:facet name="header" id="titulo" >
                                 Libros disponibles
                             </f:facet>
  
-                            <h:panelGrid columns="3" style="background-color: black;text-align: center;align-content: center;width:100%" class="libros"  >
+                            <h:panelGrid columns="3" style="background-color: black;text-align: left;align-content: center;width:100%" class="libros"  >
                                 <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
                                 <p:outputPanel>
                                     <h:panelGrid columns="2" cellpadding="10" >

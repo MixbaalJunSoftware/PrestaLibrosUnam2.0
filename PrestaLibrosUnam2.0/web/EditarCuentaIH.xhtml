@@ -14,49 +14,46 @@ and open the template in the editor.
     <h:head>
         <title>Editar Cuenta</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/> 
     </h:head>
     <h:body>
         <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="50"></p:layoutUnit>
-                    
+                    <style type="text/css">
+                        .ui-menubar   {background-color: #0D1351 !important; background: blue;}
+                        
+                    </style>
                     <h:form>
-                        <p:menubar>
-                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true"/>
+                        <p:menubar styleClass="ui-menubar">
+                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
                             <f:facet name="options">
                                 <p:inputText style="margin-right:10px" placeholder="Search"/>
-                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px" action="PerfilIH?faces-redirect=true"/>
-                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink"/>
-                                
-                                
+                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
                             </f:facet>                          
                         </p:menubar>
                     </h:form>
+               <p:layoutUnit position="west" size = "270" style="background-color:#0D1351">
+                    <h:form style="text-align: center;">
                     
-                <p:layoutUnit id="footer" position="south" size="50">
+                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 150px; height: 150px;" />
                     
+                        <p:menu style="background-color: #0D1351; border-color: black;width: 215px; height: 300px; text-align: center; margin-left: 15px">
+                            <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white; width: 195px; font-size: xx-large"/>
+                            <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Solicitudes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large ">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>
+                            <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>                    
+                            <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
+                        </p:menu>
+                    </h:form>  
                 </p:layoutUnit>
-                <p:layoutUnit position="west" size = "250">
-                    <h:form>
-                    <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 200px; height: 200px;" />
-                    <p:menu>
-                    <p:submenu label="Mi cuenta">
-                        <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages"/>
-                    </p:submenu>
-                   <p:submenu label="Administrar Libro">
-                      <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages"/>
-                      <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages"/>
-                   </p:submenu>
-                   <p:submenu label="Solicitudes Pendientes">
-                     <p:menuitem value="Solicitudes pendientes" outcome="SolicitudesIH?faces-redirect=true"/>
-                  </p:submenu>     
-                  <p:submenu label="Editar cuenta">
-                     <p:menuitem value="Editar Cuenta" outcome="EditarCuentaIH?faces-redirect=true"/>
-                  </p:submenu>
-                  </p:menu>
-                  </h:form>  
-                </p:layoutUnit>    
                     
-                <p:layoutUnit position="center" resizable="true" size="50">
+                <p:layoutUnit position="center" resizable="true" size="50" >
                     <h:form>
                     <h2>Editar cuenta</h2>
                         <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil2"  style="width: 200px; height: 200px;" />

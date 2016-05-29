@@ -77,7 +77,7 @@ public class CalificacionLibroDAO extends AbstractDAO {
         return super.maxIndice("calificacionlibro","idcalificacionlibro");
     }
     
-    public List<Libro> misPrestamos(int id){
+    public List<Libro> librosPorCalificar(int id){
         SessionFactory factory; 
         List<Libro> misprestamos = null;
         try{

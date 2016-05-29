@@ -51,7 +51,7 @@ and open the template in the editor.
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:menuitem>                    
                             <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
-                            
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large " title="Libros por calificar"/>
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>    
@@ -59,7 +59,7 @@ and open the template in the editor.
                 <p:layoutUnit position="center" resizable="true" size="50" style=" border-color: black; background:#0D1351 ">
                        
                     <h:form>
-                        <h1 style="  text-align: center; background: #0D1351; color: whitesmoke ">Mis libros</h1>   
+                        <h1 style="  text-align: center; background: #0D1351; color: whitesmoke">Mis libros</h1>   
                         <p:growl id="growl" showDetail="true" sticky="true" />
                         <p:dataScroller value="#{misLibros.libros}" var="libro">
                             <h:panelGrid columns="5" style="width:70%">   

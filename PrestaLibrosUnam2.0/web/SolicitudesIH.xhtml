@@ -28,7 +28,7 @@ and open the template in the editor.
                     </style>
                     <h:form>
                         <p:menubar styleClass="ui-menubar">
-                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
+                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke; font-weight: bold "/>
                             <f:facet name="options">
                                 <p:inputText style="margin-right:10px" placeholder="Search"/>
                                 <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
@@ -53,7 +53,7 @@ and open the template in the editor.
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:menuitem>                    
                             <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
-                            
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>  

@@ -18,19 +18,19 @@ and open the template in the editor.
         <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/calificacion.css"/>
     </h:head>
     <h:body>
-        <c:if test="#{entrar.hayUsuario()}">
+        <!--<c:if test="#{entrar.hayUsuario()}">-->
         <section class="contenedorCalificacion">
             <h:form class="formulario4">
                 <h:panelGrid columns="2" cellpadding="4" >
-                    <h:outputText value="Callback:" />
-                    <p:rating value="#{calificaUsuario.calificacion}" stars="5" cancel="false"  />
+                    <h:outputText value="Puntaje:" />
+                    <p:rating value="#{calificaUsuario.calificacion}" stars="5" cancel="false" />
                     <h:outputText value="Comentario"/>
                     <p:inputTextarea value="#{calificaUsuario.comentarios}" placeholder="Agrega un comentario" rows="6" cols="33"/>
                     <p:commandButton action="#{calificaUsuario.calificar()}" value="califica"/>
                 </h:panelGrid>
-                <h:outputText value="#{calificaUsuario.libro.autor}1"/>
+                
             </h:form>
         </section>
-        </c:if>
+        <!--</c:if>-->
     </h:body>
 </html>

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package controlador;
-
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,20 +11,17 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
-import modelo.CalificacionUsuarioDAO;
+import modelo.CalificacionLibroDAO;
 import modelo.Usuario;
-import modelo.Calificacionusuario;
+import modelo.Calificacionlibro;
 import modelo.Libro;
-
-
 /**
  *
  * @author jonathanjb
  */
 @ManagedBean
 @SessionScoped
-public class CalificaUsuario implements Serializable{
-    private Usuario usuarioP;
+public class CalificaLibro implements Serializable {
     private Libro libro;
     private Usuario usuarioC;
     private Integer calificacion;
@@ -33,12 +29,12 @@ public class CalificaUsuario implements Serializable{
     
     private final FacesContext faceContext;
     private final HttpSession sesion;
-    
-    public CalificaUsuario() {
+
+    public CalificaLibro() {
         faceContext=FacesContext.getCurrentInstance();
         sesion = (HttpSession) faceContext.getExternalContext().getSession(true);
     }
-    
+
     public Libro getLibro() {
         return libro;
     }
@@ -46,7 +42,7 @@ public class CalificaUsuario implements Serializable{
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-    
+
     public Integer getCalificacion() {
         return calificacion;
     }
@@ -68,39 +64,26 @@ public class CalificaUsuario implements Serializable{
 	libro = (Libro)event.getComponent().getAttributes().get("lb");
     }
     
-    public String calificar(){
-        CalificacionUsuarioDAO lib = new CalificacionUsuarioDAO();
-        usuarioP = (Usuario)sesion.getAttribute("usuario");
-        if(usuarioP==null)
-           return "#1";
+    public String calificarl(){
+        CalificacionLibroDAO lib = new CalificacionLibroDAO();
+        usuarioC = (Usuario)sesion.getAttribute("usuario");
         if(this.libro==null)
             return "#2";
-        usuarioC = lib.consumidor(libro.getIdlibro());
-        if(usuarioC==null)
-            return "#3";
-        System.out.println(usuarioP);
-        System.out.println(usuarioC);
-        System.out.println(libro);
+        
         if( this.getCalificacion()==null || this.getComentarios()==null){
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error", "Debes dar una calificacion") );
             return "";
         }
-        Calificacionusuario cu = new Calificacionusuario();
-        cu.setCalificacion(calificacion);
-        cu.setComentarios(comentarios);
-        cu.setIdcalificacionusr(lib.maxIndice());
-        cu.setUsuarioByConsumidoridusr(usuarioC);
-        cu.setUsuarioByPrestadoridusr(usuarioP);
-        usuarioP.getCalificacionusuariosForPrestadoridusr().add(cu);
-        usuarioC.getCalificacionusuariosForConsumidoridusr().add(cu);
-        lib.save(cu);
-        return "MisPrestamosIH?faces-redirect=true";
+        Calificacionlibro cl = new Calificacionlibro();
+        cl.setIdcalificacionlibro(lib.maxIndice());
+        cl.setCalificacion(calificacion);
+        cl.setComentario(comentarios);
+        cl.setLibro(libro);
+        cl.setUsuario(usuarioC);
+        usuarioC.getCalificacionlibros().add(cl);
+        libro.getCalificacionlibros().add(cl);
+        lib.save(cl);
+        return "LibrosPorCalificarIH?faces-redirect=true";
     }
-    
-    public boolean yaCAlifique(){
-        return calificacion>0;
-    }
-    
-    
 }

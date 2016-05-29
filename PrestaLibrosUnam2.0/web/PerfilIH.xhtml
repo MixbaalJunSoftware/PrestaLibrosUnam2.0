@@ -55,31 +55,31 @@ and open the template in the editor.
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:menuitem>                    
                             <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
-                            
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>    
                     
-                <p:layoutUnit position="center" resizable="true" size="50" style=" border-color: black; ">
-                    <h:outputText value="Bienvenido usuario #{entrar.usuario.getNombre()}" style=" font-size: 50px"/>
-                    <h:form style=" vertical-align: middle"> 
+                <p:layoutUnit position="center" resizable="true" size="50" style=" border-color: black; background: #0D1351; text-align: center ">
+                    <h:outputText value="Bienvenido #{entrar.usuario.getNombre()}" style=" font-size: 50px; font-weight: bold; text-align: center"/>
+                    <h:form > 
                         <p:growl id="growl" showDetail="true" sticky="true" />
                         <h:panelGrid columns="2" cellpadding="20" style="  height:100px">
                             <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 200px; height: 200px;" />
                             <p:outputPanel>
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText value="Nombre:"/>
-                                    <h:outputText value="#{entrar.usuario.getNombre()}" />
-                                    <h:outputText value="Apellido paterno:"/>
-                                    <h:outputText value="#{entrar.usuario.getApp()}" />
-                                    <h:outputText value="Apellido materno:"/>
-                                    <h:outputText value="#{entrar.usuario.getApm()}" />
-                                    <h:outputText value="Correo:"/>
-                                    <h:outputText value="#{entrar.usuario.getCorreo()}" />
-                                    <h:outputText value="Facultad:"/>
-                                    <h:outputText value="#{entrar.usuario.getFacultad()}" /> 
-                                    <h:outputText value="Telefono:"/>
-                                    <h:outputText value="#{entrar.usuario.getTelefono()}" /> 
+                                <h:panelGrid columns="2" cellpadding="10" style=" text-align:left">
+                                    <h:outputText value="Nombre:" style="font-weight: bold"/>
+                                    <h:outputText value="#{entrar.usuario.getNombre()}" style="font-weight: bold"/>
+                                    <h:outputText value="Apellido paterno:" style="font-weight: bold"/>
+                                    <h:outputText value="#{entrar.usuario.getApp()}" style="font-weight: bold"/>
+                                    <h:outputText value="Apellido materno:" style="font-weight: bold"/>
+                                    <h:outputText value="#{entrar.usuario.getApm()}" style="font-weight: bold"/>
+                                    <h:outputText value="Correo:" style="font-weight: bold"/>
+                                    <h:outputText value="#{entrar.usuario.getCorreo()}" style="font-weight: bold" />
+                                    <h:outputText value="Facultad:" style="font-weight: bold"/>
+                                    <h:outputText value="#{entrar.usuario.getFacultad()}" style="font-weight: bold"/> 
+                                    <h:outputText value="Telefono:" style="font-weight: bold"/>
+                                    <h:outputText value="#{entrar.usuario.getTelefono()}" style="font-weight: bold"/> 
                                 </h:panelGrid>
                             </p:outputPanel>    
                         </h:panelGrid>

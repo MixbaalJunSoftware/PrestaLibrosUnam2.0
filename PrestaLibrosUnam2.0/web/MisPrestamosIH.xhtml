@@ -50,7 +50,7 @@ and open the template in the editor.
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:menuitem>                    
                             <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
-                            
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>    
@@ -75,12 +75,12 @@ and open the template in the editor.
                                        <h:outputText value="#{libro.editorial}" style="font-weight: bold"/>
                                     </h:panelGrid>         
                                 </p:outputPanel>
-                                
-                                    <p:commandButton value="Reactivar" action="#"/>
-                                    <p:commandButton value="Calificar Usuario" action="CalificaUsuarioIH?faces-redirect=true" actionListener="#{calificaUsuario.listener}">
-                                        <f:attribute name="lb" value="#{libro}"/>
-                                    </p:commandButton>
-                                
+                                <h:panelGrid columns="2" cellpadding="5" >
+                                    <p:commandButton value="Reactivar" action="#" style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                                    <p:commandButton value="Califica Usuario" action="CalificaUsuarioIH?faces-redirect=true" actionListener="#{calificaUsuario.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                    <f:attribute name="lb" value="#{libro}" />
+                                </p:commandButton> 
+                                </h:panelGrid>
                             </h:panelGrid>
                        </p:dataScroller>
                      </h:form>

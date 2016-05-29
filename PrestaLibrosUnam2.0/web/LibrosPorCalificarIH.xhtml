@@ -5,12 +5,85 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view contentType="text/html">    
+        <h:head>
+            <title>Libros por calificar</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/> 
+        </h:head>
+        <h:body>
+            <c:if test="#{entrar.hayUsuario()}">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="50"></p:layoutUnit>
+                    <style type="text/css">
+                        .ui-menubar   {background-color: #0D1351 !important; background: blue;}
+                    </style>
+                    <h:form>
+                        <p:menubar styleClass="ui-menubar">
+                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
+                            <f:facet name="options">
+                                <p:inputText style="margin-right:10px" placeholder="Search"/>
+                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
+                            </f:facet>                          
+                        </p:menubar>
+                    </h:form>
+               <p:layoutUnit position="west" size = "270" style="background-color:#0D1351">
+                    <h:form style="text-align: center;">
+                    
+                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 150px; height: 150px;" />
+                    
+                        <p:menu style="background-color: #0D1351; border-color: black;width: 215px; height: 300px; text-align: center; margin-left: 15px">
+                            <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white; width: 195px; font-size: xx-large"/>
+                            <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Solicitudes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large ">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>
+                            <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>                    
+                            <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
+                        </p:menu>
+                    </h:form>  
+                </p:layoutUnit>    
+                <p:layoutUnit position="center"  style="background-color:#0D1351">
+                    <h:form>
+                        <p:dataScroller value="#{librosPorCalificar.libros}" var="libro">
+                            <f:facet name="header">
+                               Mis Prestamos
+                            </f:facet>
+                         
+                            <h:panelGrid columns="3" style="width:70%;text-align: center;align-content: center" cellpadding="5">   
+                                <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
+                                <p:outputPanel >
+                                    <h:panelGrid columns="2" cellpadding="4" >
+                                       <h:outputText value="Nombre: " style="font-weight: bold"/>
+                                       <h:outputText value="#{libro.nombre}" style="font-weight: bold"/>
+
+                                       <h:outputText value="Autor: " style="font-weight: bold"/>
+                                       <h:outputText value="#{libro.autor}" style="font-weight: bold" />
+
+                                       <h:outputText value="Editorial: " style="font-weight: bold"/>
+                                       <h:outputText value="#{libro.editorial}" style="font-weight: bold"/>
+                                    </h:panelGrid>         
+                                </p:outputPanel>
+                                <p:commandButton value="Califica Libro" action="CalificaLibrosIH?faces-redirect=true" actionListener="#{calificaLibro.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                    <f:attribute name="lb" value="#{libro}" />
+                                </p:commandButton> 
+                                
+                            </h:panelGrid>
+                       </p:dataScroller>
+                     </h:form>
+                </p:layoutUnit>
+            </p:layout>
+            </c:if>
+        </h:body>
+    </f:view>
 </html>
