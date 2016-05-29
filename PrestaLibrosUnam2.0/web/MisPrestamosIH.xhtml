@@ -56,33 +56,32 @@ and open the template in the editor.
                 </p:layoutUnit>    
                 <p:layoutUnit position="center"  style="background-color:#0D1351">
                     <h:form>
-                           <p:growl id="growl" showDetail="true" sticky="true" />
-                           <p:dataScroller value="#{misPrestamos.libros}" var="libro">
+                        <p:dataScroller value="#{misPrestamos.libros}" var="libro">
                             <f:facet name="header">
                                Mis Prestamos
                             </f:facet>
                          
-                        <h:panelGrid columns="3" style="width:70%;text-align: center;align-content: center" cellpadding="5">   
-                            <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
-                            <p:outputPanel >
-                                <h:panelGrid columns="2" cellpadding="4" >
-                                   <h:outputText value="Nombre: " style="font-weight: bold"/>
-                                   <h:outputText value="#{libro.nombre}" style="font-weight: bold"/>
+                            <h:panelGrid columns="3" style="width:70%;text-align: center;align-content: center" cellpadding="5">   
+                                <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
+                                <p:outputPanel >
+                                    <h:panelGrid columns="2" cellpadding="4" >
+                                       <h:outputText value="Nombre: " style="font-weight: bold"/>
+                                       <h:outputText value="#{libro.nombre}" style="font-weight: bold"/>
 
-                                   <h:outputText value="Autor: " style="font-weight: bold"/>
-                                   <h:outputText value="#{libro.autor}" style="font-weight: bold" />
+                                       <h:outputText value="Autor: " style="font-weight: bold"/>
+                                       <h:outputText value="#{libro.autor}" style="font-weight: bold" />
 
-                                   <h:outputText value="Editorial: " style="font-weight: bold"/>
-                                   <h:outputText value="#{libro.editorial}" style="font-weight: bold"/>
-                                </h:panelGrid>         
-                            </p:outputPanel>
-                            <h:panelGrid columns="2"  cellpadding="5">
-                                <p:commandButton value="Reactivar" action="#"/>
-                                <p:commandButton value="Calificar Usuario" action="CalificaUsuarioIH?faces-redirect=true" actionListener="#{calificaUsuario.listener}">
-                                    <f:attribute name="libro" value="#{libro.idlibro}"/>
-                                </p:commandButton>
+                                       <h:outputText value="Editorial: " style="font-weight: bold"/>
+                                       <h:outputText value="#{libro.editorial}" style="font-weight: bold"/>
+                                    </h:panelGrid>         
+                                </p:outputPanel>
+                                
+                                    <p:commandButton value="Reactivar" action="#"/>
+                                    <p:commandButton value="Calificar Usuario" action="CalificaUsuarioIH?faces-redirect=true" actionListener="#{calificaUsuario.listener}">
+                                        <f:attribute name="lb" value="#{libro}"/>
+                                    </p:commandButton>
+                                
                             </h:panelGrid>
-                        </h:panelGrid>
                        </p:dataScroller>
                      </h:form>
                 </p:layoutUnit>

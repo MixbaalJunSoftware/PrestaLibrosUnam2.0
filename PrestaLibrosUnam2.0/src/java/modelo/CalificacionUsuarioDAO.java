@@ -103,9 +103,9 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         } 
     }
     
-    public int consumidor(int libro,int prestador){
+    public Usuario consumidor(int libro){
         SessionFactory factory; 
-        int consumidor =-1; 
+        Usuario consumidor =null; 
         try{
             factory = new Configuration().configure().buildSessionFactory();
         }catch (Throwable ex) { 
@@ -116,15 +116,15 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String sql = "SELECT usridusuario FROM solicitudes WHERE libroidlibro =" +libro;
+            String sql = "SELECT * FROM usuario WHERE idusuario in (SELECT usridusuario FROM solicitudes WHERE libroidlibro =" +libro+"AND aceptado = TRUE)" ;
             SQLQuery query = session.createSQLQuery(sql);
-            //query.addEntity(Libro.class);
-            consumidor = (int)query.uniqueResult();
+            query.addEntity(Usuario.class);
+            consumidor = (Usuario)query.uniqueResult();
             tx.commit();
             return consumidor;
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
-            return -1; 
+            return null; 
         }finally {
             session.close(); 
         }

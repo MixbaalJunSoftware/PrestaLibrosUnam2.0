@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controlador;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -20,7 +21,7 @@ import modelo.Usuario;
  */
 @ManagedBean
 @ViewScoped
-public class MisPrestamos {
+public class MisPrestamos implements Serializable{
     private List<Libro> libros;
     private Usuario usuario;
     

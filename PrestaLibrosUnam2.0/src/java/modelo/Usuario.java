@@ -150,7 +150,7 @@ public class Usuario  implements java.io.Serializable {
     }
 
     @Override public String toString(){
-        return this.getNombre() + this.contrasenia+this.app;
+        return this.getNombre() + this.contrasenia+this.app+this.getIdusuario();
     }
 
 

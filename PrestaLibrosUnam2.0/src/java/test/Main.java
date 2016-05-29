@@ -9,6 +9,7 @@ import java.io.File;
 import modelo.CalificacionUsuarioDAO;
 import modelo.Libro;
 import modelo.LibroDAO;
+import modelo.Usuario;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Main {
         */
         
         CalificacionUsuarioDAO cu = new CalificacionUsuarioDAO();
-        int c = cu.consumidor(3, 3);
+        Usuario c = cu.consumidor(3);
         System.out.println(c);
     }       
 }
