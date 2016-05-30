@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
@@ -96,6 +97,61 @@ public class CalificacionLibroDAO extends AbstractDAO {
             misprestamos = query.list();
             tx.commit();
             return misprestamos;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return null; 
+        }finally {
+            session.close(); 
+        } 
+    }
+    
+    public Integer promedio(int id){
+        SessionFactory factory; 
+        Integer p = -1;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT avg(calificacion) FROM calificacionlibro WHERE libroidlibro ="+id;
+            SQLQuery query = session.createSQLQuery(sql);
+            if(query.uniqueResult() != null){
+                p = ((BigDecimal)query.uniqueResult()).intValue();
+            }
+            tx.commit();
+            return p;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return-1; 
+        }finally {
+            session.close(); 
+        } 
+    }
+    
+    public List<Calificacionlibro> calificaciones(int id){
+        SessionFactory factory; 
+        List<Calificacionlibro> calificacion = null;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT * FROM calificacionlibro WHERE libroidlibro = "+id;
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Calificacionlibro.class);
+            calificacion = query.list();
+            tx.commit();
+            return calificacion;
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             return null; 

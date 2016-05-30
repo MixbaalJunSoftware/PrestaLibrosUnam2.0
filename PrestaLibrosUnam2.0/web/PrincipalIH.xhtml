@@ -65,7 +65,7 @@
                                     </h:panelGrid>         
                                                           
                                 </p:outputPanel>
-                                <p:commandButton value="Ir a pagina del libro" action="LibroIH?faces-redirect=true" actionListener="#{entrar.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                <p:commandButton value="Ir a pagina del libro" action="#{entrar.rating}" actionListener="#{entrar.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
                                     <f:attribute name="lb" value="#{libro}" />
                                 </p:commandButton> 
                             </h:panelGrid>

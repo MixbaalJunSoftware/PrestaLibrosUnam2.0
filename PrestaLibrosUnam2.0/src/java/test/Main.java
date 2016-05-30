@@ -12,6 +12,7 @@ import modelo.LibroDAO;
 import modelo.Usuario;
 import controlador.Buscar;
 import java.util.List;
+import modelo.CalificacionLibroDAO;
 
 /**
  *
@@ -28,15 +29,16 @@ public class Main {
             e.printStackTrace();
         }
         */
-        /*
-        CalificacionUsuarioDAO cu = new CalificacionUsuarioDAO();
-        Usuario c = cu.consumidor(3);
+       
+        CalificacionLibroDAO cu = new CalificacionLibroDAO();
+        Integer c = cu.promedio(4);
         System.out.println(c);
-       */
+       
+        /*
         String tit = "Libro1";
         Buscar b = new Buscar();
         b.setTitulo(tit);
         b.buscar();
-        
+        */
     }       
 }

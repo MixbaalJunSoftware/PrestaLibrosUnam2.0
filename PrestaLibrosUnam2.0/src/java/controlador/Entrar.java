@@ -6,11 +6,15 @@
 package controlador;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
+import modelo.CalificacionLibroDAO;
+import modelo.Calificacionlibro;
 import modelo.Libro;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
@@ -25,11 +29,13 @@ public class Entrar implements Serializable{
     private String correo;
     private String contrasenia;
     private String msn;
+    private Integer calificacion;
     private Usuario usuario;
     private Libro libro;
     private  FacesContext faceContext;
     private HttpSession sesion;
-
+    private List<Calificacionlibro> calificaciones;
+        
     public Entrar(){
         faceContext = FacesContext.getCurrentInstance();
         sesion=(HttpSession)faceContext.getExternalContext().getSession(true);
@@ -47,6 +53,23 @@ public class Entrar implements Serializable{
         return msn;
     }
 
+    public Integer getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Integer calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public List<Calificacionlibro> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<Calificacionlibro> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+    
+    
     public void setMsn(String msn) {
         this.msn = msn;
     }
@@ -110,4 +133,21 @@ public class Entrar implements Serializable{
         return libro.getUsuario().getIdusuario() == usuario.getIdusuario();
     }
     
+    public String rating(){
+        CalificacionLibroDAO l = new CalificacionLibroDAO();
+        Integer p = l.promedio(libro.getIdlibro());
+        if(p<0){
+            this.setCalificacion(0);
+        }else{
+            this.setCalificacion(p);
+        }
+            
+        return "LibroIH?faces-redirect=true"; 
+    }
+    
+    
+    public void ver() {
+        CalificacionLibroDAO lib = new CalificacionLibroDAO();
+        calificaciones = lib.calificaciones(libro.getIdlibro());
+    }
 }
