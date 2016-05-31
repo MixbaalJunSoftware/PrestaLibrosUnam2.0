@@ -91,7 +91,7 @@ public class Buscar implements Serializable{
          System.out.print("Este es el libro " + this.getTitulo());
          if(this.getTitulo()!=null && !this.getTitulo().equals("")){
             libros = lib.buscarNormal(this.getTitulo());
-            System.out.print(libros);
+            titulo="";
             if(libros.isEmpty()){
                 return "ErrorBusquedaIH?faces-redirect=true";
             }
@@ -111,20 +111,38 @@ public class Buscar implements Serializable{
                 if(this.getGenero()!= null && !this.getGenero().equals("")){
                     if(this.getPais() != null && !this.getPais().equals("")){
                         libros = libr.buscarAvanzada(this.getTitulo(),this.getAutor(),this.getGenero(),this.getPais());
+                        titulo="";
+                        autor="";
+                        genero="";
+                        pais="";
+                        if(libros.isEmpty())
+                            return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
                     }else{
                         libros = libr.buscarAvanzada2(this.getTitulo(),this.getAutor(),this.getGenero());
+                        titulo="";
+                        autor="";
+                        genero="";
+                        if(libros.isEmpty())
+                            return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
                     }
                 }else{ 
                     libros = libr.buscarAvanzada3(this.getTitulo(),this.getAutor());
+                    titulo="";
+                    autor="";
+                    if(libros.isEmpty())
+                            return "ErrorBusquedaIH?faces-redirect=true";
                     return "ResultadosIH?faces-redirect=true";                    
                 }
             }else{
+               this.setMsn("Se requiere del autor para realizar la búsqueda");
                return "ErrorBusquedaIH?faces-redirect=true";   
             }
         }else{
+            this.setMsn("Se requiere del nombre del libro para realizar la búsqueda");
             return "ErrorBusquedaIH?faces-redirect=true";       
         }
+              
     }
 }

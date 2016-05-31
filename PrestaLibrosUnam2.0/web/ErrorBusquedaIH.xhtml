@@ -24,18 +24,28 @@ and open the template in the editor.
                 <p:layoutUnit position="north" size="50"></p:layoutUnit>
                     <p:growl id="messages"/>
                     <style type="text/css">
-                        .ui-menubar   {background-color: #0D1351 !important; background: blue;}
+                        .ui-menubar   {background-color:#0D1351 !important; background: blue;}
                     </style>
                     <h:form>
                         <p:menubar styleClass="ui-menubar">
-                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
+                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: white;"/>
                             <f:facet name="options">
-                                <p:inputText style="margin-right:10px" placeholder="Search"/>
-                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
-                            </f:facet>                          
+                                
+                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;">
+                            </p:commandButton>   
+                                
+                            <c:if test="#{!entrar.hayUsuario()}">
+                                <p:commandButton  action="EntrarIH?faces-redirect=true" value="Entrar" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/>
+                            </c:if>
+                            <c:if test="#{entrar.hayUsuario()}">
+                                <p:commandLink value="#{entrar.usuario.getNombre()}" style="margin-right:10px; color: whitesmoke" action="PerfilIH?faces-redirect=true" />
+                                <p:commandButton  action="#{salir.salir()}" value="Salir" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/><!--onclick="window.location.reload();"-->
+                            </c:if>
+                            </f:facet>
                         </p:menubar>
                     </h:form>
-                    
+                                 
                  
                     
                 <p:layoutUnit position="center" resizable="true" size="50" style=" border-color: black; background: #0D1351; text-align: center ">

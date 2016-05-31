@@ -29,7 +29,7 @@ and open the template in the editor.
                             <f:facet name="options">
                                 
                                 <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
-                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;">
                             </p:commandButton>   
                                 
                             <c:if test="#{!entrar.hayUsuario()}">
@@ -42,12 +42,11 @@ and open the template in the editor.
                             </f:facet>
                         </p:menubar>
                     </h:form>
-                    
-                    
+                
                     
                     <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" >
                         <h:form >
-                            <h:outputText value="Escribe en los campos que quieras modificar"/>
+                            <h:outputText value="Escribe los campos del libro que buscas"/>
                             <p:panelGrid columns="2">
                             <h:outputText value="Nombre:" />
                             <h:inputText id="titulo" value="#{buscar.titulo}" />
