@@ -29,7 +29,7 @@ public class VerPublica implements Serializable {
     @PostConstruct
     public void ver() {
         LibroDAO lib = new LibroDAO();
-        libros = lib.findAll();
+        libros = lib.librosDisponibles();
     }
  
     public List<Libro> getLibros() {

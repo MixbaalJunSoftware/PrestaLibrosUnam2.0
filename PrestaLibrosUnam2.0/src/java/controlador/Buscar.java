@@ -117,7 +117,7 @@ public class Buscar implements Serializable{
                         autor="";
                         genero="";
                         pais="";
-                        System.out.print("Caso1");
+                        //System.out.print("Caso1");
                         if(libros.isEmpty())
                             return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
@@ -126,7 +126,7 @@ public class Buscar implements Serializable{
                         titulo="";
                         autor="";
                         genero="";
-                        System.out.print("Caso2");
+                        //System.out.print("Caso2");
                         if(libros.isEmpty())
                             return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
@@ -135,17 +135,18 @@ public class Buscar implements Serializable{
                     libros = libr.buscarAvanzada3(this.getTitulo(),this.getAutor());
                     titulo="";
                     autor="";
-                    System.out.print("Caso3");
+                    //System.out.print("Caso3");
                     if(libros.isEmpty())
                             return "ErrorBusquedaIH?faces-redirect=true";
                     return "ResultadosIH?faces-redirect=true";                    
                 }
             }else{
-               this.setMsn("Error, Se requiere del autor para realizar la búsqueda");
+                FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Error", "Se requiere del autor la busqueda") );
                return "";   
             }
         }else{
-            System.out.print("Que pedo");
+           
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error", "Se requiere del nombre del libro para la busqueda") );
             this.setMsn("Error, Se requiere del nombre del libro para realizar la búsqueda");

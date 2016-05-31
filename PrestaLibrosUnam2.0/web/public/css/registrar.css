@@ -22,13 +22,3 @@ body
     text-align: center;
     color: white;
 }
-.formulario
-{
-    background-color: #F3F3F3;
-    border-radius: 7px;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4), 0px 0px 4px white inset, 2px 2px 2px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    width: 400px;
-}

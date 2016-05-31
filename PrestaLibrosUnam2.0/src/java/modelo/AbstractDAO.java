@@ -92,6 +92,21 @@ public abstract class AbstractDAO {
         return objects;
     }
     
+    protected List findDisponibles(Class clazz){
+         List objects = null;
+        try {
+            startOperation();
+            Query query = session.createQuery("from " + clazz.getName()+ " WHERE disponible = TRUE");
+            objects = query.list();
+            tx.commit();
+        } catch (HibernateException e) {
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;
+    }
+    
     protected List findLibros(Class clazz, Long id){
         List objects = null;
         try{
@@ -112,7 +127,7 @@ public abstract class AbstractDAO {
         try{
             startOperation();
             //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
-            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + bus + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE UPPER(nombre) like UPPER('%" + bus + "%')");
            // System.out.print(query);
             objects = query.list();
             tx.commit();
@@ -128,9 +143,9 @@ public abstract class AbstractDAO {
         try{
             startOperation();
             //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
-            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + nombre + "%' "
-                                             + "AND autor like '%" + autor + "%' AND genero like '%"+ genero + "%' "
-                                             + "AND pais like '%"+pais+"%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE UPPER(nombre) like UPPER('%" + nombre + "%')"
+                                             + "AND UPPER(autor) like UPPER('%" + autor + "%') AND UPPER(genero) like UPPER('%"+ genero + "%')"
+                                             + "AND UPPER(pais) like UPPER('%"+pais+"%')");
                                               
            // System.out.print(query);
             objects = query.list();
@@ -148,8 +163,8 @@ public abstract class AbstractDAO {
         try{
             startOperation();
             //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
-            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + nombre + "%' "
-                                             + "AND autor like '%" + autor + "%' AND genero like '%"+ genero + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE UPPER(nombre) like UPPER('%" + nombre + "%') "
+                                             + "AND UPPER(autor) like UPPER('%" + autor + "%') AND UPPER(genero) like UPPER('%"+ genero + "%')");
                                               
            // System.out.print(query);
             objects = query.list();
@@ -167,8 +182,8 @@ public abstract class AbstractDAO {
         try{
             startOperation();
             //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
-            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + nombre + "%' "
-                                             + "AND autor like '%" + autor + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE UPPER(nombre) like UPPER('%" + nombre + "%') "
+                                             + "AND UPPER(autor) like UPPER('%" + autor + "%')");
                                               
            // System.out.print(query);
             objects = query.list();
