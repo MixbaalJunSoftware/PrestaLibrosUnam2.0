@@ -15,29 +15,29 @@
         <section class="contenedorLibro">
             <h:form class="formulario3">
                 <h:panelGrid columns="2" cellpadding="4" >
-                    <p:graphicImage value="#{entrar.libro.getFotoLibro()}" width="300" height="400"/>
+                    <p:graphicImage value="#{verLibro.libro.getFotoLibro()}" width="300" height="400"/>
                     <h:panelGrid columns="2" cellpadding="5" style="margin-bottom:20px"  width="430px">
                         <h:outputText value="Titulo :" id="titulo" style="font-weight: bold; color: whitesmoke"/>
-                        <h:outputText value="#{entrar.libro.getNombre()}" id="titulo1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verLibro.libro.getNombre()}" id="titulo1" style="font-weight: bold; color: whitesmoke"/>
                         <h:outputText value="Autor :" id="autor" style="font-weight: bold; color: whitesmoke"/>
-                        <h:outputText value="#{entrar.libro.getAutor()}" id="autor1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verLibro.libro.getAutor()}" id="autor1" style="font-weight: bold; color: whitesmoke"/>
                         <h:outputText value="Genero :" id="genero" style="font-weight: bold; color: whitesmoke"/>
-                        <h:outputText value="#{entrar.libro.getGenero()}" id="genero1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verLibro.libro.getGenero()}" id="genero1" style="font-weight: bold; color: whitesmoke"/>
                         <h:outputText value="Editorial :" id="editorial" style="font-weight: bold; color: whitesmoke"/>
-                        <h:outputText value="#{entrar.libro.getEditorial()}" id="editorial1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verLibro.libro.getEditorial()}" id="editorial1" style="font-weight: bold; color: whitesmoke"/>
                         <h:outputText value="Pais :" id="pais" style="font-weight: bold; color: whitesmoke"/>
-                        <h:outputText value="#{entrar.libro.getPais()}" id="pais1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verLibro.libro.getPais()}" id="pais1" style="font-weight: bold; color: whitesmoke"/>
                         <h:outputText value="Descripcion :" id="descipcion" style="font-weight: bold; color: whitesmoke"/>
-                        <h:outputText value="#{entrar.libro.getDescripcion()}" id="descipcion1" style="font-weight: bold; color: whitesmoke"/>
-                        <p:commandButton  disabled="#{entrar.esMiLibro()}" value="solicitar" action="#{solicitarPrestamo.SolicitarPrestamo()}" update = "growl" 
+                        <h:outputText value="#{verLibro.libro.getDescripcion()}" id="descipcion1" style="font-weight: bold; color: whitesmoke"/>
+                        <p:commandButton  disabled="#{verLibro.esMiLibro()}" value="solicitar" action="#{solicitarPrestamo.SolicitarPrestamo()}" update = "growl" 
                                          actionListener="#{solicitarPrestamo.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
-                            <f:attribute name="libro" value="#{entrar.libro}" />
-                            <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            <f:attribute name="libro" value="#{verLibro.libro}" />
+                            <f:attribute name="usuario" value="#{verLibro.usuario}" />
                         </p:commandButton>
                         <p:commandButton value="Volver" action="PrincipalIH?faces-redirect=true" style="font-weight: bold; background-color: whitesmoke; color: black"/>
                         <p:growl id="growl" showDetail="true" sticky="true" />
                     </h:panelGrid>
-                    <p:rating cancel="false" stars="5" readonly="true" value="#{entrar.calificacion}"/>
+                    <p:rating cancel="false" stars="5" readonly="true" value="#{verLibro.calificacion}"/>
                 </h:panelGrid>
                 <!---<p:dataScroller value="#{entrar.calificaciones}" var="cal" style="background: #0D1351">
                     <p:panelGrid columns="2">

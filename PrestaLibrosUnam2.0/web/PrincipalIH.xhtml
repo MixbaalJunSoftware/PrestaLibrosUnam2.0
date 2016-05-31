@@ -65,8 +65,9 @@
                                     </h:panelGrid>         
                                                           
                                 </p:outputPanel>
-                                <p:commandButton value="Ir a pagina del libro" action="#{entrar.rating}" actionListener="#{entrar.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                <p:commandButton value="Ir a pagina del libro" action="#{verLibro.rating}" actionListener="#{verLibro.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
                                     <f:attribute name="lb" value="#{libro}" />
+                                    <f:attribute name="usr" value="#{entrar.usuario}" />
                                 </p:commandButton> 
                             </h:panelGrid>
                         </p:dataScroller>

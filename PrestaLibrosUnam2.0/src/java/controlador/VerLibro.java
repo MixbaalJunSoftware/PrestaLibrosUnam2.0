@@ -9,35 +9,33 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
-import javax.servlet.http.HttpSession;
 import modelo.CalificacionLibroDAO;
 import modelo.Calificacionlibro;
 import modelo.Libro;
 import modelo.Usuario;
-import modelo.UsuarioDAO;
+
 /**
  *
- * @author jonathanjb
+ * @author luis
  */
 @ManagedBean
 @SessionScoped
-public class Entrar implements Serializable{
-    
-    private String correo;
-    private String contrasenia;
-    private String msn;
-    private Integer calificacion;
-    private Usuario usuario;
+
+public class VerLibro implements Serializable{
+
     private Libro libro;
-    private  FacesContext faceContext;
-    private HttpSession sesion;
+    private Usuario usuario;
     private List<Calificacionlibro> calificaciones;
-        
-    public Entrar(){
-        faceContext = FacesContext.getCurrentInstance();
-        sesion=(HttpSession)faceContext.getExternalContext().getSession(true);
+    private Integer calificacion;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
     public Libro getLibro() {
@@ -47,10 +45,7 @@ public class Entrar implements Serializable{
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-    
-    public String getMsn() {
-        return msn;
-    }
+
 
     public Integer getCalificacion() {
         return calificacion;
@@ -68,56 +63,8 @@ public class Entrar implements Serializable{
         this.calificaciones = calificaciones;
     }
     
-    
-    public void setMsn(String msn) {
-        this.msn = msn;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-    
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    public boolean hayUsuario(){
-        return this.getUsuario()!=null;
-    }
-    
-
-    public String entrar(){
-        UsuarioDAO ud = new UsuarioDAO();
-        Usuario u = ud.valida(this.getCorreo(),this.getContrasenia());
-        if(u!=null){
-            this.setUsuario(u);
-            this.setMsn("");
-            this.setCorreo("");
-            this.setContrasenia("");
-            sesion.setAttribute("usuario", u);
-            return "PrincipalIH?faces-redirect=true";
-        }
-        this.setMsn("Error! Contraseña o correo incorrectos");
-        return "EntrarIH?faces-redirect=true";
-    }
-    
     public void listener(ActionEvent event){
+        usuario = (Usuario)event.getComponent().getAttributes().get("usr");
 	libro = (Libro)event.getComponent().getAttributes().get("lb");
     }
 
@@ -139,9 +86,9 @@ public class Entrar implements Serializable{
         return "LibroIH?faces-redirect=true"; 
     }
     
-    
     public void ver() {
         CalificacionLibroDAO lib = new CalificacionLibroDAO();
         calificaciones = lib.calificaciones(libro.getIdlibro());
     }
+    
 }
