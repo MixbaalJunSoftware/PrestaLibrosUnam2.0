@@ -1,5 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -8,7 +13,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:view contentType="text/html">
         <h:head>
-            <title>PrestalibrosUnam</title>
+            <title>Búsqueda Avanzada</title>
             <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/>
         </h:head>
         <h:body>
@@ -42,34 +47,22 @@
                     
                     <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" >
                         <h:form >
-                            <p:dataScroller value="#{verPublica.libros}" var="libro" style="background: #0D1351">
-                                <f:facet name="header" id="titulo" class="Principal" >
-                                Libros disponibles
-                            </f:facet>
- 
-                            <h:panelGrid columns="3" style="background-color: black;text-align: left;align-content: center;width:100%" class="libros"  >
-                                <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
-                                <p:outputPanel>
-                                    <h:panelGrid columns="2" cellpadding="10" >
-                                        <h:outputText value="Nombre: " style="font-weight: bold;color: whitesmoke" />
-                                        <h:outputText value="#{libro.nombre}" style="font-weight: bold;color: whitesmoke" />
- 
-                                        <h:outputText value="Autor: " style="font-weight: bold; color: whitesmoke"/>
-                                        <h:outputText value="#{libro.autor}" style="font-weight: bold;color: whitesmoke"/>
- 
-                                        <h:outputText value="Editorial: " style="font-weight: bold;color: whitesmoke"/>
-                                        <h:outputText value="#{libro.editorial}" style="font-weight: bold;color: whitesmoke"/>
-                               
-                                        <h:outputText value="Genero: " style="font-weight: bold;color: whitesmoke" />
-                                        <h:outputText value="#{libro.genero}" style="font-weight: bold;color: whitesmoke" />
-                                    </h:panelGrid>         
-                                                          
-                                </p:outputPanel>
-                                <p:commandButton value="Ir a pagina del libro" action="#{entrar.rating}" actionListener="#{entrar.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
-                                    <f:attribute name="lb" value="#{libro}" />
-                                </p:commandButton> 
-                            </h:panelGrid>
-                        </p:dataScroller>
+                            <h:outputText value="Escribe en los campos que quieras modificar"/>
+                            <p:panelGrid columns="2">
+                            <h:outputText value="Nombre:" />
+                            <h:inputText id="titulo" value="#{buscar.titulo}" />
+                            <h:outputText value="Autor:" />
+                            <p:inputText id="autor" value="#{buscar.autor}"/>
+                            <h:outputText value="Genero:" />
+                            <p:inputText id="fac" value="#{buscar.genero}" />
+                            <h:outputText value="Pais:" />
+                            <h:inputText id="nombre" value="#{buscar.pais}" />
+                            </p:panelGrid>  
+                            <p:panelGrid columns="2">
+                                <p:commandButton value="Buscar"  action="#{buscar.buscarLibro()}"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                                <p:commandButton value="Página Principal"  action="PrincipalIH?faces-redirect=true"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                            </p:panelGrid>
+                                
                             
                             
                     </h:form>
@@ -81,4 +74,3 @@
         </h:body>
     </f:view>
 </html>
-

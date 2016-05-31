@@ -13,7 +13,7 @@ and open the template in the editor.
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:view contentType="text/html">
         <h:head>
-            <title>PrestalibrosUnam</title>
+            <title>Resultados</title>
             <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/>
         </h:head>
         <h:body>
@@ -29,7 +29,7 @@ and open the template in the editor.
                             <f:facet name="options">
                                 
                                 <p:inputText style="margin-right:10px" id="busc" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
-                                <p:commandButton value="Buscar" onclick="#{buscar.buscar()}" action="ResultadosIH?faces-redirect=true"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                                <p:commandButton value="Buscar"  action="#{buscar.buscarLibro()}"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
                                    
                                
                             <c:if test="#{!entrar.hayUsuario()}">

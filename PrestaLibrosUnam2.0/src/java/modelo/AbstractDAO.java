@@ -123,6 +123,63 @@ public abstract class AbstractDAO {
         }
         return objects;        
     }
+    protected List buscaAvanzada(Class clazz, String nombre, String autor, String genero, String pais){
+        List objects = null;
+        try{
+            startOperation();
+            //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + nombre + "%' "
+                                             + "AND autor like '%" + autor + "%' AND genero like '%"+ genero + "%' "
+                                             + "AND pais like '%"+pais+"%'");
+                                              
+           // System.out.print(query);
+            objects = query.list();
+            tx.commit();
+        } catch(HibernateException e){
+            handleException(e);            
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;        
+    }
+    
+     protected List buscaAvanzada2(Class clazz, String nombre, String autor, String genero){
+        List objects = null;
+        try{
+            startOperation();
+            //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + nombre + "%' "
+                                             + "AND autor like '%" + autor + "%' AND genero like '%"+ genero + "%'");
+                                              
+           // System.out.print(query);
+            objects = query.list();
+            tx.commit();
+        } catch(HibernateException e){
+            handleException(e);            
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;        
+    }
+     
+    protected List buscaAvanzada3(Class clazz, String nombre, String autor){
+        List objects = null;
+        try{
+            startOperation();
+            //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE nombre like '%" + nombre + "%' "
+                                             + "AND autor like '%" + autor + "%'");
+                                              
+           // System.out.print(query);
+            objects = query.list();
+            tx.commit();
+        } catch(HibernateException e){
+            handleException(e);            
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;        
+    } 
     
     protected void handleException(HibernateException e) throws DataAccessLayerException {
         HibernateFactory.rollback(tx);

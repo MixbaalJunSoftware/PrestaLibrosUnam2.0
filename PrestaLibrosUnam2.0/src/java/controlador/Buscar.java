@@ -31,7 +31,7 @@ public class Buscar implements Serializable{
     private String autor;
     private String genero;
     private String pais;
-    
+    private String msn;
 
      public List<Libro> getLibros() {
         return libros;
@@ -76,16 +76,55 @@ public class Buscar implements Serializable{
     public void setPais(String pais) {
         this.pais = pais;
     }
-         
-    @PostConstruct
-    public void buscar(){
+
+    public String getMsn() {
+        return msn;
+    }
+
+    public void setMsn(String msn) {
+        this.msn = msn;
+    }
+        
+    //@PostConstruct
+    public String buscarLibro(){
          LibroDAO lib = new LibroDAO();
-         System.out.print("Este es el libro" + this.getTitulo());
-         //this.setTitulo("Libro1");
-         if(this.getTitulo()!=null && !this.getTitulo().equals(""))
-         libros = lib.buscarNormal(this.getTitulo());
-          titulo = "";
-          //System.out.print(this.getLibros());
+         System.out.print("Este es el libro " + this.getTitulo());
+         if(this.getTitulo()!=null && !this.getTitulo().equals("")){
+            libros = lib.buscarNormal(this.getTitulo());
+            System.out.print(libros);
+            if(libros.isEmpty()){
+                return "ErrorBusquedaIH?faces-redirect=true";
+            }
+            else{
+              return "ResultadosIH?faces-redirect=true";
+            }
+         }
+         else{
+             return "ErrorBusquedaIH?faces-redirect=true";                    
+         }
     }
     
+    public String buscaAvanzado(){
+        LibroDAO libr = new LibroDAO();
+        if(this.getTitulo() != null && !this.getTitulo().equals("")){
+            if(this.getAutor()!= null && !this.getTitulo().equals("")){
+                if(this.getGenero()!= null && !this.getGenero().equals("")){
+                    if(this.getPais() != null && !this.getPais().equals("")){
+                        libros = libr.buscarAvanzada(this.getTitulo(),this.getAutor(),this.getGenero(),this.getPais());
+                        return "ResultadosIH?faces-redirect=true";
+                    }else{
+                        libros = libr.buscarAvanzada2(this.getTitulo(),this.getAutor(),this.getGenero());
+                        return "ResultadosIH?faces-redirect=true";
+                    }
+                }else{ 
+                    libros = libr.buscarAvanzada3(this.getTitulo(),this.getAutor());
+                    return "ResultadosIH?faces-redirect=true";                    
+                }
+            }else{
+               return "ErrorBusquedaIH?faces-redirect=true";   
+            }
+        }else{
+            return "ErrorBusquedaIH?faces-redirect=true";       
+        }
+    }
 }
