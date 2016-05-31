@@ -28,10 +28,10 @@ and open the template in the editor.
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: white;"/>
                             <f:facet name="options">
                                 
-                                <p:inputText style="margin-right:10px" id="busc" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
-                                <p:commandButton value="Buscar"  action="#{buscar.buscarLibro()}"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
-                                   
-                               
+                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;">
+                            </p:commandButton>   
+                                
                             <c:if test="#{!entrar.hayUsuario()}">
                                 <p:commandButton  action="EntrarIH?faces-redirect=true" value="Entrar" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/>
                             </c:if>
@@ -43,10 +43,8 @@ and open the template in the editor.
                         </p:menubar>
                     </h:form>
                     
-                    
-                    
-                    <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" >
-                        <h:form >
+                    <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" id="center">
+                        <h:form  >
                             <p:dataScroller value="#{buscar.libros}" var="libro" style="background: #0D1351">
                                 <f:facet name="header" id="titulo" class="Principal" >
                                 Resultados de busqueda
@@ -75,6 +73,21 @@ and open the template in the editor.
                                 </p:commandButton> 
                             </h:panelGrid>
                         </p:dataScroller>
+                            
+                            <h:outputText value="Puedes realizar una busqueda avanzada" style=" font-size: 30px; font-weight: bold; text-align: center"/>
+                            <br/>
+                            <br/>
+                            <p:commandButton  action="BusqAvanzadaIH?faces-redirect=true" value="Busqueda Avanzada" style=" background-color:white; color:#0D1351 "/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <h:outputText value="¡Recuerda revisar la ortografía de tus búsquedas!" style=" font-size: 15px; font-weight: bold; text-align: center"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p:commandButton  action="PrincipalIH?faces-redirect=true" value="Página principal" style=" background-color:white; color:#0D1351 "/>
+                    
                             
                             
                     </h:form>

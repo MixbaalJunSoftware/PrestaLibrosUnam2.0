@@ -44,6 +44,7 @@ and open the template in the editor.
                             </c:if>
                             </f:facet>
                         </p:menubar>
+                        
                     </h:form>
                                  
                  
@@ -58,11 +59,17 @@ and open the template in the editor.
                             <h:outputText value="Puedes realizar una busqueda avanzada" style=" font-size: 30px; font-weight: bold; text-align: center"/>
                             <br/>
                             <br/>
-                            <p:commandButton  action="BusqAvanzadaIH?faces-redirect=true" value="Busqueda Avanzada" style=" background-color:white; color:#0D1351 "/>
+                            <p:commandButton id="buav"  action="BusqAvanzadaIH?faces-redirect=true" value="Busqueda Avanzada" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"/>
                             <br/>
                             <br/>
                             <br/>
                             <h:outputText value="¡Recuerda revisar la ortografía de tus búsquedas!" style=" font-size: 15px; font-weight: bold; text-align: center"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p:commandButton id="pagp" action="PrincipalIH?faces-redirect=true" value="Página principal" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"/>
+                    
                     </h:form>
                 </p:layoutUnit> 
                 
