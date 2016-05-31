@@ -46,6 +46,7 @@ and open the template in the editor.
                     
                     <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" >
                         <h:form >
+                            <p:growl id="growl2" showDetail="true"/> 
                             <h:outputText value="Escribe los campos del libro que buscas"/>
                             <p:panelGrid columns="2">
                             <h:outputText value="Nombre:" />
@@ -57,8 +58,10 @@ and open the template in the editor.
                             <h:outputText value="Pais:" />
                             <h:inputText id="nombre" value="#{buscar.pais}" />
                             </p:panelGrid>  
+                            <p:growl id="growl" showDetail="true" sticky="true" />
                             <p:panelGrid columns="2">
-                                <p:commandButton value="Buscar"  action="#{buscar.buscarLibro()}"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                                
+                                <p:commandButton value="Buscar"  action="#{buscar.buscaAvanzado()}"  style="font-weight: bold; background-color: whitesmoke; color: black" update="growl"/>
                                 <p:commandButton value="Página Principal"  action="PrincipalIH?faces-redirect=true"  style="font-weight: bold; background-color: whitesmoke; color: black"/>
                             </p:panelGrid>
                                 

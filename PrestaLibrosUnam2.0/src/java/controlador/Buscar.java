@@ -8,10 +8,12 @@ package controlador;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import modelo.Libro;
 import modelo.LibroDAO;
 
@@ -115,6 +117,7 @@ public class Buscar implements Serializable{
                         autor="";
                         genero="";
                         pais="";
+                        System.out.print("Caso1");
                         if(libros.isEmpty())
                             return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
@@ -123,6 +126,7 @@ public class Buscar implements Serializable{
                         titulo="";
                         autor="";
                         genero="";
+                        System.out.print("Caso2");
                         if(libros.isEmpty())
                             return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
@@ -131,17 +135,21 @@ public class Buscar implements Serializable{
                     libros = libr.buscarAvanzada3(this.getTitulo(),this.getAutor());
                     titulo="";
                     autor="";
+                    System.out.print("Caso3");
                     if(libros.isEmpty())
                             return "ErrorBusquedaIH?faces-redirect=true";
                     return "ResultadosIH?faces-redirect=true";                    
                 }
             }else{
-               this.setMsn("Se requiere del autor para realizar la búsqueda");
-               return "ErrorBusquedaIH?faces-redirect=true";   
+               this.setMsn("Error, Se requiere del autor para realizar la búsqueda");
+               return "";   
             }
         }else{
-            this.setMsn("Se requiere del nombre del libro para realizar la búsqueda");
-            return "ErrorBusquedaIH?faces-redirect=true";       
+            System.out.print("Que pedo");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Error", "Se requiere del nombre del libro para la busqueda") );
+            this.setMsn("Error, Se requiere del nombre del libro para realizar la búsqueda");
+            return "";       
         }
               
     }

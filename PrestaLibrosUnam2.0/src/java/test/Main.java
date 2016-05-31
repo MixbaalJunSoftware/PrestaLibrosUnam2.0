@@ -29,16 +29,19 @@ public class Main {
             e.printStackTrace();
         }
         */
-       
+       /*
         CalificacionLibroDAO cu = new CalificacionLibroDAO();
         Integer c = cu.promedio(4);
         System.out.println(c);
-       
-        /*
+       */
+        
         String tit = "Libro1";
+        String aut = "Libro2";
         Buscar b = new Buscar();
         b.setTitulo(tit);
-        b.buscar();
-        */
+        b.setAutor(aut);
+        System.out.print("Esto hacienco" +
+                b.buscaAvanzado());
+        
     }       
 }
