@@ -27,7 +27,9 @@ and open the template in the editor.
                         <p:menubar styleClass="ui-menubar">
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
                             <f:facet name="options">
-                                <p:inputText style="margin-right:10px" placeholder="Search"/>
+                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;">
+                                </p:commandButton> 
                                 <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
                             </f:facet>                          
                         </p:menubar>
@@ -55,24 +57,30 @@ and open the template in the editor.
                     
                 <p:layoutUnit position="center" resizable="true" size="50" >
                     <h:form>
-                    <h2>Editar cuenta</h2>
-                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil2"  style="width: 200px; height: 200px;" />
-                        <p:panelGrid columns="2">
+                     <h1 style="  text-align: center; background: #0D1351; color: whitesmoke">Editar Cuenta</h1>
+                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil2"  style="width: 200px; height: 200px; margin-left: 40%" />
+                        <br/>
+                        <br/>    
+                        <p:panelGrid columns="2" style=" margin-left: 21.5%; text-align: center">
                             <h:outputText value="Cambiar imagen:" />
                             
                             
                               <h:form enctype="multipart/form-data">
                                   <p:fileUpload fileLimit="1" fileUploadListener="#{editarUsuario.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                     sizeLimit="1000000" value="Select Images"/>
+                                                sizeLimit="1000000" value="Select Images"  class="update"/>
                                                                    
                             </h:form>
                         </p:panelGrid>
+                        <br/>
+                        
                         </h:form>   
                     
-                        <h:form> 
+                    <h:form  style=" text-align: center"> 
                         
-                        <h:outputText value="Escribe en los campos que quieras modificar"/>
-                       <p:panelGrid columns="2">
+                        <h:outputText value="Escribe en los campos que quieras modificar" style=" font-size: 25px; font-weight: bold;"/>
+                        <br/>
+                        <br/>
+                        <p:panelGrid columns="2" style="margin-left: 27.5%; text-align: center">
                             <h:outputText value="Contraseña:" />
                             <p:password id="contraseña" value="#{editarUsuario.password}" />
                             <h:outputText value="Confirmar contraseña:" />
@@ -81,23 +89,27 @@ and open the template in the editor.
                             <p:inputText id="phone" value="#{editarUsuario.telefono}"/>
                             <h:outputText value="Facultad:" />
                             <p:inputText id="fac" value="#{editarUsuario.facultad}" />
-                            <p:growl id="growl" showDetail="true" />
-                            </p:panelGrid>                        
-                        <p:commandButton  action="#{editarUsuario.editar}" value="Aceptar" actionListener="#{editarUsuario.listener}" update="growl">
+                            </p:panelGrid>  
+                        <br/>
+                        <br/>
+                        <p:growl id="growl" showDetail="true" />
+                        <p:commandButton  action="#{editarUsuario.editar}" value="Aceptar" actionListener="#{editarUsuario.listener}" 
+                                          update="growl" style="margin-right: 10px; background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;">
                             <f:attribute name="usuario" value="#{entrar.usuario}" />
                             <p:confirm header="Confirmacion" message="¿Tus datos son correctos?" icon="ui-icon-alert" />
                         </p:commandButton>
-                        <p:commandButton  action="#{eliminarUsuario.eliminar()}" value="Eliminar cuenta" actionListener="#{eliminarUsuario.listener}" update="growl">
+                        <p:commandButton  action="#{eliminarUsuario.eliminar()}" value="Eliminar cuenta" actionListener="#{eliminarUsuario.listener}" 
+                                          update="growl" style="margin-right: 10px; background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;">
                             <f:attribute name="usuario" value="#{entrar.usuario}" />
                             <p:confirm header="Confirmacion" message="¿Estas seguro que deseas eliminar tu cuenta?" icon="ui-icon-alert" />
                         </p:commandButton>
                          
                          <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                           <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"  />
                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                          </p:confirmDialog>
                         
-                        <p:commandButton  action="PerfilIH?faces-redirect=true" value="Cancelar"/>
+                        <p:commandButton  action="PerfilIH?faces-redirect=true" value="Cancelar" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"/>
                         
                         </h:form>
                  </p:layoutUnit>
