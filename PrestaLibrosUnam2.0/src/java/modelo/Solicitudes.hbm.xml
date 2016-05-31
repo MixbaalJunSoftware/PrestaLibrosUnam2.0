@@ -19,5 +19,11 @@
     <property name="aceptado" type="java.lang.Boolean">
       <column name="aceptado"/>
     </property>
+    <property name="califlibro" type="java.lang.Boolean">
+      <column name="califlibro"/>
+    </property>
+    <property name="califusr" type="java.lang.Boolean">
+      <column name="califusr"/>
+    </property>
   </class>
 </hibernate-mapping>

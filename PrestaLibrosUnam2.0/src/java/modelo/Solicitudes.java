@@ -15,7 +15,9 @@ public class Solicitudes  implements java.io.Serializable {
      private Usuario usuario;
      private Date fecha;
      private Boolean aceptado;
-
+     private Boolean califlibro;
+     private Boolean califusr;
+     
     public Solicitudes() {
     }
 
@@ -23,12 +25,14 @@ public class Solicitudes  implements java.io.Serializable {
     public Solicitudes(int idsolicitudes) {
         this.idsolicitudes = idsolicitudes;
     }
-    public Solicitudes(int idsolicitudes, Libro libro, Usuario usuario, Date fecha, Boolean aceptado) {
+    public Solicitudes(int idsolicitudes, Libro libro, Usuario usuario, Date fecha, Boolean aceptado, Boolean califlibro,Boolean califusr) {
        this.idsolicitudes = idsolicitudes;
        this.libro = libro;
        this.usuario = usuario;
        this.fecha = fecha;
        this.aceptado = aceptado;
+       this.califlibro = califlibro;
+       this.califusr = califusr;
     }
    
     public int getIdsolicitudes() {
@@ -67,7 +71,23 @@ public class Solicitudes  implements java.io.Serializable {
         this.aceptado = aceptado;
     }
 
+    public Boolean getCaliflibro() {
+        return califlibro;
+    }
 
+    public void setCaliflibro(Boolean califlibro) {
+        this.califlibro = califlibro;
+    }
+
+    public Boolean getCalifusr() {
+        return califusr;
+    }
+
+    public void setCalifusr(Boolean califusr) {
+        this.califusr = califusr;
+    }
+
+    
 
 
 }

@@ -7,6 +7,7 @@ package controlador;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
@@ -66,6 +67,9 @@ public class VerLibro implements Serializable{
     public void listener(ActionEvent event){
         usuario = (Usuario)event.getComponent().getAttributes().get("usr");
 	libro = (Libro)event.getComponent().getAttributes().get("lb");
+        
+        CalificacionLibroDAO lib = new CalificacionLibroDAO();
+        calificaciones = lib.calificaciones(libro.getIdlibro());
     }
 
     public boolean esMiLibro(){
@@ -85,7 +89,7 @@ public class VerLibro implements Serializable{
             
         return "LibroIH?faces-redirect=true"; 
     }
-    
+   
     public void ver() {
         CalificacionLibroDAO lib = new CalificacionLibroDAO();
         calificaciones = lib.calificaciones(libro.getIdlibro());

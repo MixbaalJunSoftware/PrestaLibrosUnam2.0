@@ -11,8 +11,11 @@ import modelo.Libro;
 import modelo.LibroDAO;
 import modelo.Usuario;
 import controlador.Buscar;
+import java.util.Date;
 import java.util.List;
 import modelo.CalificacionLibroDAO;
+import modelo.Solicitudes;
+import modelo.SolicitudesDAO;
 
 /**
  *
@@ -34,7 +37,7 @@ public class Main {
         Integer c = cu.promedio(4);
         System.out.println(c);
        */
-        
+       /* 
         String tit = "Libro1";
         String aut = "Libro2";
         Buscar b = new Buscar();
@@ -42,6 +45,18 @@ public class Main {
         b.setAutor(aut);
         System.out.print("Esto hacienco" +
                 b.buscaAvanzado());
+        */
+       SolicitudesDAO sd = new SolicitudesDAO();
+       Solicitudes s = new Solicitudes();
+       s.setIdsolicitudes(sd.maxIndice());
+       s.setAceptado(Boolean.TRUE);
+       s.setCaliflibro(Boolean.FALSE);
+       s.setCalifusr(Boolean.FALSE);
+       s.setFecha(new Date());
+       s.setLibro(new Libro(1));
+       s.setUsuario(new Usuario(1));
+       sd.save(s);
         
+               
     }       
 }
