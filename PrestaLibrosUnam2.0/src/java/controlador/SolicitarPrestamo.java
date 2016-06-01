@@ -61,6 +61,8 @@ public class SolicitarPrestamo implements Serializable{
         solicitud.setUsuario(usuario);
         solicitud.setLibro(libro);
         solicitud.setAceptado(false);
+        solicitud.setCaliflibro(false);
+        solicitud.setCalifusr(false);
         solicitud.setFecha(date);
         libro.getSolicitudeses().add(solicitud);
         usuario.getSolicitudeses().add(solicitud);

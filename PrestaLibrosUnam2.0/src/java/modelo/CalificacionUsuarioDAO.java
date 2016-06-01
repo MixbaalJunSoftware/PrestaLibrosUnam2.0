@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
+import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -130,4 +131,31 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         }
     }
     
+    public Integer promedio(int id){
+        SessionFactory factory; 
+        Integer p = -1;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT avg(calificacion) FROM calificacionusuario WHERE consumidoridusr ="+id;
+            SQLQuery query = session.createSQLQuery(sql);
+            if(query.uniqueResult() != null){
+                p = ((BigDecimal)query.uniqueResult()).intValue();
+            }
+            tx.commit();
+            return p;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return-1; 
+        }finally {
+            session.close(); 
+        }
+    }
 }
