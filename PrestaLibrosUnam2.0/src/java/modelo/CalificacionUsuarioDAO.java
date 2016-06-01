@@ -144,7 +144,7 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String sql = "SELECT avg(calificacion) FROM calificacionusuario WHERE consumidoridusr ="+id;
+            String sql = "SELECT avg(calificacion) FROM calificacionusuario WHERE consumidoridusr in (SELECT usridusuario FROM solicitudes WHERE usridusuario ="+id+")";
             SQLQuery query = session.createSQLQuery(sql);
             if(query.uniqueResult() != null){
                 p = ((BigDecimal)query.uniqueResult()).intValue();
@@ -157,5 +157,32 @@ public class CalificacionUsuarioDAO extends AbstractDAO {
         }finally {
             session.close(); 
         }
+    }
+    
+    public List<Calificacionusuario> calificacionesU(int id){
+        SessionFactory factory; 
+        List<Calificacionusuario> calificacion = null;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT * FROM calificacionusuario WHERE consumidoridusr = "+id;
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Calificacionusuario.class);
+            calificacion = query.list();
+            tx.commit();
+            return calificacion;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return null; 
+        }finally {
+            session.close(); 
+        } 
     }
 }

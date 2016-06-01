@@ -1,32 +1,83 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>EditarLibro</title>
+         <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/inicio.css"/> 
     </h:head>
     <h:body>
-        <h:form enctype="multipart/form-data">
-            <p:panelGrid columns="2">
-                <h:outputText value="sube una imagen:" />  
-                <p:fileUpload fileLimit="1" fileUploadListener="#{actualizarLibro.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                          sizeLimit="100000000" value="Select Images" />                                           
-            </p:panelGrid>
-        </h:form>
-        <f:view>
-            <h:form>
-                <h:panelGrid columns="2" cellpadding="5"> 
-                    <h:outputText value="Descripcion"/>
-                    <p:inputTextarea  value="#{actualizarLibro.descripcion}" rows="6" cols="33" />
-                </h:panelGrid>
-                <br/>
-                <p:growl id="growl" showDetail="true" sticky="true" />
-                <p:commandButton value="Actualizar" action="#{actualizarLibro.actualizarLibro}" update="growl"/>
-                <p:commandButton value="volver" action="PerfilIH?faces-redirect=true"/>
-            </h:form>
-        </f:view>
+        <c:if test="#{entrar.hayUsuario()}">
+        <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="50"></p:layoutUnit>
+                    <p:growl id="messages"/>
+                    <style type="text/css">
+                        .ui-menubar   {background-color: #0D1351 !important; background: blue;}
+                    </style>
+                    <h:form>
+                        <p:menubar styleClass="ui-menubar">
+                            <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
+                            <f:facet name="options">
+                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;"/>
+                                <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
+                            </f:facet>                          
+                        </p:menubar>
+                    </h:form>
+                    
+                <!--<p:layoutUnit id="footer" position="south" size="50">
+                    
+                </p:layoutUnit>-->
+                <p:layoutUnit position="west" size = "270" style="background-color:#0D1351">
+                    <h:form style="text-align: center;">
+                    
+                        <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 150px; height: 150px;" />
+                    
+                        <p:menu style="background-color: #0D1351; border-color: black;width: 215px; height: 300px; text-align: center; margin-left: 15px">
+                            <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white; width: 195px; font-size: xx-large"/>
+                            <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="Solicitudes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large ">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>
+                            <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large">
+                                <f:attribute name="usuario" value="#{entrar.usuario}" />
+                            </p:menuitem>                    
+                            <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
+                        </p:menu>
+                    </h:form>  
+                </p:layoutUnit>    
+        
+        
+                <p:layoutUnit position="center" resizable="true" size="50" style=" border-color: black; background: #0D1351; text-align: center ">
+        
+                    <h:form enctype="multipart/form-data">
+                        <p:panelGrid columns="2">
+                            <h:outputText value="sube una imagen:" />  
+                            <p:fileUpload fileLimit="1" fileUploadListener="#{actualizarLibro.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                      sizeLimit="100000000" value="Select Images" />                                           
+                        </p:panelGrid>
+                    </h:form>
+                    <f:view>
+                        <h:form>
+                            <h:panelGrid columns="2" cellpadding="5"> 
+                                <h:outputText value="Descripcion"/>
+                                <p:inputTextarea  value="#{actualizarLibro.descripcion}" rows="6" cols="33" />
+                            </h:panelGrid>
+                            <br/>
+                            <p:growl id="growl" showDetail="true" sticky="true" />
+                            <p:commandButton value="Actualizar" action="#{actualizarLibro.actualizarLibro}" update="growl"/>
+                            <p:commandButton value="volver" action="PerfilIH?faces-redirect=true"/>
+                        </h:form>
+                    </f:view>
+                </p:layoutUnit>
+        </p:layout>
+        </c:if>
     </h:body>
 </html>
 

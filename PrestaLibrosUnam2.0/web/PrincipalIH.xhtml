@@ -22,10 +22,9 @@
                         <p:menubar styleClass="ui-menubar">
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: white;"/>
                             <f:facet name="options">
-                                
                                 <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
                                 <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;">
-                            </p:commandButton>   
+                                </p:commandButton>   
                                 
                             <c:if test="#{!entrar.hayUsuario()}">
                                 <p:commandButton  action="EntrarIH?faces-redirect=true" value="Entrar" icon="ui-icon-enterlink" style="background-color:#333367; color: white;"/>

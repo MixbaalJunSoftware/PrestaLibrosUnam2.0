@@ -29,7 +29,8 @@ and open the template in the editor.
                         <p:menubar styleClass="ui-menubar">
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke;"/>
                             <f:facet name="options">
-                                <p:inputText style="margin-right:10px" placeholder="Search"/>
+                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;"/>
                                 <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
                             </f:facet>                          
                         </p:menubar>

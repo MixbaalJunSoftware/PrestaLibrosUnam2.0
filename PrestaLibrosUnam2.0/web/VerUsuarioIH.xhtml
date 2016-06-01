@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Usuario</title>
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/libro.css"/>
+    </h:head>
+    <h:body>   
+        <section class="contenedorLibro">
+            <h:form class="formulario3">
+                <h:panelGrid columns="2" cellpadding="4" >
+                    <p:graphicImage value="#{verUsuario.solicitud.usuario.fotoUsr}" width="300" height="400"/>
+                    <h:panelGrid columns="2" cellpadding="5" style="margin-bottom:20px"  width="470px">
+                        <h:outputText value="Nombre :"  style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verUsuario.solicitud.usuario.nombre}"  style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="Apellido Paterno :" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verUsuario.solicitud.usuario.app}" id="autor1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="Correo :" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verUsuario.solicitud.usuario.correo}" id="genero1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="Numero :"  style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verUsuario.solicitud.usuario.telefono}" id="editorial1" style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="Facultad :"  style="font-weight: bold; color: whitesmoke"/>
+                        <h:outputText value="#{verUsuario.solicitud.usuario.facultad}" id="pais1" style="font-weight: bold; color: whitesmoke"/>
+                        <p:commandButton value="Volver" action="SolicitudesIH?faces-redirect=true" style="font-weight: bold; background-color: whitesmoke; color: black"/>
+                    </h:panelGrid>
+                    <h:outputText value="Calificacion :" style="font-weight: bold; color: whitesmoke"/>
+                    <p:rating cancel="false" stars="5" readonly="true" value="#{verUsuario.calificacion}"/>
+                
+                    <p:dataScroller value="#{verUsuario.calificacionesU}" var="cal">
+                    
+                        <p:graphicImage value="#{cal.usuarioByPrestadoridusr.fotoUsr}" id="foto_libro" width="25" height="40" />
+                        <h:outputText value="#{cal.comentarios}" style="font-weight: bold; color: black" />
+                        
+                    
+                </p:dataScroller>
+                    
+                </h:panelGrid>
+            </h:form>
+        </section>
+        
+            
+      
+    </h:body>
+
+</html>

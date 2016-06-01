@@ -16,6 +16,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import modelo.Libro;
+import modelo.LibroDAO;
 import modelo.Solicitudes;
 import modelo.SolicitudesDAO;
 import modelo.Usuario;
@@ -61,6 +63,8 @@ public class AceptarSolicitud implements Serializable{
     
     public String aceptarSolicitud() {
         SolicitudesDAO sd = new SolicitudesDAO();
+        LibroDAO ld = new LibroDAO();
+        Libro l = solicitud.getLibro();
         Mail m = new Mail();
         String Subject = "Solicitud Rechazada";
         String Mesage;
@@ -76,6 +80,8 @@ public class AceptarSolicitud implements Serializable{
         }
         solicitud.setAceptado(true);
         sd.update(solicitud);
+        l.setDisponible(false);
+        ld.update(l);
         Subject = "Solicitud Aceptada";
         Mesage = "Tu solicitud de prestamos para el libro " + solicitud.getLibro().getNombre()+" ha sido aceptada\n"+
                          "para cualquier aclaración contacta al prestador en el correo "+solicitud.getLibro().getUsuario().getCorreo(); 

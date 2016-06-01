@@ -30,7 +30,8 @@ and open the template in the editor.
                         <p:menubar styleClass="ui-menubar">
                             <p:menuitem value="PrestaLibrosUnam" action="PrincipalIH?faces-redirect=true" style="color: whitesmoke; font-weight: bold "/>
                             <f:facet name="options">
-                                <p:inputText style="margin-right:10px" placeholder="Search"/>
+                                <p:inputText style="margin-right:10px" id="Busqueda" placeholder="Escribe titulo del libro" value="#{buscar.titulo}"/>
+                                <p:commandButton value="Buscar" action="#{buscar.buscarLibro()}" style="margin-right:10px; background-color:#333367; color: white;"/>
                                 <p:commandButton  action="#{salir.salir()}" value="salir" icon="ui-icon-enterlink" style=" background-color:white; color:#0D1351 "/>
                             </f:facet>                          
                         </p:menubar>
@@ -85,12 +86,14 @@ and open the template in the editor.
                                                           
                             </p:outputPanel>
                              
-                             <p:commandButton action="#{aceptarSolicitud.aceptarSolicitud}" value="Aceptar" actionListener="#{aceptarSolicitud.listener}">
+                             <p:commandButton action="#{aceptarSolicitud.aceptarSolicitud}" value="Aceptar" actionListener="#{aceptarSolicitud.listener}" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999">
                                 <f:attribute name="solicitud" value= "#{solicitud}" />
                                 <f:attribute name="usuario" value= "#{entrar.usuario}" />
                              </p:commandButton>
                              
-                             <p:rating stars="5" cancel="false" readonly="true" value="#{verSolicitudes.calificacion}"/>
+                             <p:commandButton value="InfoConsumidor" action="VerUsuarioIH?faces-redirect=true" actionListener="#{verUsuario.listener}" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999">
+                                 <f:attribute name="solicitud" value= "#{solicitud}" />
+                             </p:commandButton>
                          </h:panelGrid>
                        </p:dataScroller>
                      </h:form>
