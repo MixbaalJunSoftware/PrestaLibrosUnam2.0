@@ -5,18 +5,23 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Contrasenia olvidada</title>
+        <link rel="stylesheet" href="/PrestaLibrosUnam2.0/public/css/login.css"/>
     </h:head>
     <h:body>
-        <h:form> 
-            <h:outputText value="Ingresa tu correo electronico"/>
+        <h1 id="titulo">Recuperar Contraseña</h1>
+        <section class="contenedorLogin">
+            <h:form class="form"> 
+                <h:outputText value="Ingresa tu correo electronico" style="font-weight: bold;text-align: center"/>
+                <br/>
+                <p:inputText value="#{mensajeMB.correo}"/>
+                <br/>
+                <p:commandButton value="enviar" action="#{mensajeMB.contraseniaOlvidada}"  update="msn" style=" font-weight: bold; background-color: black; color: whitesmoke"/>
+                <br/>
+                <h:outputText id="msn" value="#{mensajeMB.msn}" style="color: red; font-weight: bold"/>
+            </h:form>
             <br/>
-            <p:inputText value="#{mensajeMB.correo}"/>
-            <br/>
-            <p:commandButton value="enviar" action="#{mensajeMB.contraseniaOlvidada}"  update="msn" />
-            <br/>
-            <h:outputText id="msn" value="#{mensajeMB.msn}"/>
-        </h:form>
-        <p:commandLink action="EntrarIH?faces-redirect=true"  value="volver" />
+            <p:commandLink action="EntrarIH?faces-redirect=true"  value="volver"  style="font-weight: bold; color: whitesmoke"/>
+        </section>
     </h:body>
 </html>
 

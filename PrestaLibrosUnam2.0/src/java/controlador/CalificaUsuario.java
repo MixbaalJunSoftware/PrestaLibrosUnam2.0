@@ -16,6 +16,8 @@ import modelo.CalificacionUsuarioDAO;
 import modelo.Usuario;
 import modelo.Calificacionusuario;
 import modelo.Libro;
+import modelo.Solicitudes;
+import modelo.SolicitudesDAO;
 
 
 /**
@@ -26,7 +28,7 @@ import modelo.Libro;
 @SessionScoped
 public class CalificaUsuario implements Serializable{
     private Usuario usuarioP;
-    private Libro libro;
+    private Solicitudes solicitud;
     private Usuario usuarioC;
     private Integer calificacion;
     private String comentarios;
@@ -38,13 +40,13 @@ public class CalificaUsuario implements Serializable{
         faceContext=FacesContext.getCurrentInstance();
         sesion = (HttpSession) faceContext.getExternalContext().getSession(true);
     }
-    
-    public Libro getLibro() {
-        return libro;
+
+    public Solicitudes getSolicitud() {
+        return solicitud;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setSolicitud(Solicitudes solicitud) {
+        this.solicitud = solicitud;
     }
     
     public Integer getCalificacion() {
@@ -65,15 +67,16 @@ public class CalificaUsuario implements Serializable{
     
     public void listener(ActionEvent event){
         System.out.println("Donde estas libro??");
-	libro = (Libro)event.getComponent().getAttributes().get("lb");
+	solicitud = (Solicitudes)event.getComponent().getAttributes().get("lb");
     }
     
     public String calificar(){
         CalificacionUsuarioDAO lib = new CalificacionUsuarioDAO();
+        Libro libro = solicitud.getLibro();
         usuarioP = (Usuario)sesion.getAttribute("usuario");
         if(usuarioP==null)
            return "#1";
-        if(this.libro==null)
+        if(libro==null)
             return "#2";
         usuarioC = lib.consumidor(libro.getIdlibro());
         if(usuarioC==null)
@@ -95,6 +98,9 @@ public class CalificaUsuario implements Serializable{
         usuarioP.getCalificacionusuariosForPrestadoridusr().add(cu);
         usuarioC.getCalificacionusuariosForConsumidoridusr().add(cu);
         lib.save(cu);
+        SolicitudesDAO sd = new SolicitudesDAO();
+        solicitud.setCalifusr(true);
+        sd.update(solicitud);
         return "MisPrestamosIH?faces-redirect=true";
     }
     

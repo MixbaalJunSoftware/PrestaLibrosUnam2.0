@@ -15,6 +15,8 @@ import modelo.CalificacionLibroDAO;
 import modelo.Usuario;
 import modelo.Calificacionlibro;
 import modelo.Libro;
+import modelo.Solicitudes;
+import modelo.SolicitudesDAO;
 /**
  *
  * @author jonathanjb
@@ -22,7 +24,7 @@ import modelo.Libro;
 @ManagedBean
 @SessionScoped
 public class CalificaLibro implements Serializable {
-    private Libro libro;
+    private Solicitudes solicitud;
     private Usuario usuarioC;
     private Integer calificacion;
     private String comentarios;
@@ -33,14 +35,6 @@ public class CalificaLibro implements Serializable {
     public CalificaLibro() {
         faceContext=FacesContext.getCurrentInstance();
         sesion = (HttpSession) faceContext.getExternalContext().getSession(true);
-    }
-
-    public Libro getLibro() {
-        return libro;
-    }
-
-    public void setLibro(Libro libro) {
-        this.libro = libro;
     }
 
     public Integer getCalificacion() {
@@ -61,13 +55,14 @@ public class CalificaLibro implements Serializable {
     
     public void listener(ActionEvent event){
         System.out.println("Donde estas libro??");
-	libro = (Libro)event.getComponent().getAttributes().get("lb");
+	solicitud = (Solicitudes)event.getComponent().getAttributes().get("lb");
     }
     
     public String calificarl(){
         CalificacionLibroDAO lib = new CalificacionLibroDAO();
         usuarioC = (Usuario)sesion.getAttribute("usuario");
-        if(this.libro==null)
+        Libro libro = solicitud.getLibro();
+        if(libro==null)
             return "#2";
         
         if( this.getCalificacion()==null || this.getComentarios()==null){
@@ -84,6 +79,9 @@ public class CalificaLibro implements Serializable {
         usuarioC.getCalificacionlibros().add(cl);
         libro.getCalificacionlibros().add(cl);
         lib.save(cl);
+        solicitud.setCaliflibro(true);
+        SolicitudesDAO sd = new SolicitudesDAO();
+        sd.update(solicitud);
         return "LibrosPorCalificarIH?faces-redirect=true";
     }
 }

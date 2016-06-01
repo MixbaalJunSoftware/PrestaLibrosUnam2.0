@@ -45,17 +45,17 @@ public class Main {
         b.setAutor(aut);
         System.out.print("Esto hacienco" +
                 b.buscaAvanzado());
-        */
-       SolicitudesDAO sd = new SolicitudesDAO();
-       Solicitudes s = new Solicitudes();
-       s.setIdsolicitudes(sd.maxIndice());
-       s.setAceptado(Boolean.TRUE);
-       s.setCaliflibro(Boolean.FALSE);
-       s.setCalifusr(Boolean.FALSE);
-       s.setFecha(new Date());
-       s.setLibro(new Libro(1));
-       s.setUsuario(new Usuario(1));
-       sd.save(s);
+//        */
+//       SolicitudesDAO sd = new SolicitudesDAO();
+//       Solicitudes s = new Solicitudes();
+//       s.setIdsolicitudes(sd.maxIndice());
+//       s.setAceptado(Boolean.TRUE);
+//       s.setCaliflibro(Boolean.FALSE);
+//       s.setCalifusr(Boolean.FALSE);
+//       s.setFecha(new Date());
+//       s.setLibro(new Libro(1));
+//       s.setUsuario(new Usuario(1));
+//       sd.save(s);
         
                
     }       

@@ -56,30 +56,33 @@ and open the template in the editor.
                 </p:layoutUnit>    
                 <p:layoutUnit position="center"  style="background-color:#0D1351">
                     <h:form>
-                        <p:dataScroller value="#{misPrestamos.libros}" var="libro">
+                        <p:dataScroller value="#{misPrestamos.solicitudes}" var="solicitud">
                             <f:facet name="header">
                                Mis Prestamos
                             </f:facet>
                          
                             <h:panelGrid columns="3" style="width:70%;text-align: center;align-content: center" cellpadding="5">   
-                                <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
+                                <p:graphicImage value="#{solicitud.libro.fotoLibro}" id="foto_libro" width="170" height="200" />
                                 <p:outputPanel >
                                     <h:panelGrid columns="2" cellpadding="4" >
                                        <h:outputText value="Nombre: " style="font-weight: bold"/>
-                                       <h:outputText value="#{libro.nombre}" style="font-weight: bold"/>
+                                       <h:outputText value="#{solicitud.libro.nombre}" style="font-weight: bold"/>
 
                                        <h:outputText value="Autor: " style="font-weight: bold"/>
-                                       <h:outputText value="#{libro.autor}" style="font-weight: bold" />
+                                       <h:outputText value="#{solicitud.libro.autor}" style="font-weight: bold" />
 
                                        <h:outputText value="Editorial: " style="font-weight: bold"/>
-                                       <h:outputText value="#{libro.editorial}" style="font-weight: bold"/>
+                                       <h:outputText value="#{solicitud.libro.editorial}" style="font-weight: bold"/>
                                     </h:panelGrid>         
                                 </p:outputPanel>
                                 <h:panelGrid columns="2" cellpadding="5" >
-                                    <p:commandButton value="Reactivar" action="#" style="font-weight: bold; background-color: whitesmoke; color: black"/>
-                                    <p:commandButton value="Califica Usuario" action="CalificaUsuarioIH?faces-redirect=true" actionListener="#{calificaUsuario.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
-                                    <f:attribute name="lb" value="#{libro}" />
-                                </p:commandButton> 
+                                    <p:commandButton value="Reactivar" action="#{reactivarLibro.reactivarLibro}" update ="growl3"  actionListener="#{reactivarLibro.listener}" disabled="#{!solicitud.califusr}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                        <f:attribute name="lb" value="#{solicitud}" />
+                                    </p:commandButton>
+                                    <p:commandButton value="Califica Usuario" update="growl3"  disabled="#{solicitud.califusr}" action="CalificaUsuarioIH?faces-redirect=true" actionListener="#{calificaUsuario.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                        <f:attribute name="lb" value="#{solicitud}" />
+                                    </p:commandButton>
+                                    <p:growl id="growl3"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                        </p:dataScroller>

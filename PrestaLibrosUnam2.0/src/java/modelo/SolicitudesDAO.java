@@ -135,5 +135,59 @@ public class SolicitudesDAO extends AbstractDAO {
         }
         return s;
     }
+
+    public List<Solicitudes> aceptadas(int idusuario) {
+        SessionFactory factory; 
+        List<Solicitudes> solicitudes = null;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT * FROM solicitudes WHERE aceptado = TRUE AND libroidlibro IN (SELECT idlibro FROM libro WHERE usridusuario = "+idusuario+")";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Solicitudes.class);
+            solicitudes = query.list();
+            tx.commit();
+            return solicitudes;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return null; 
+        }finally {
+            session.close(); 
+        }  
+    }
+    
+    public List<Solicitudes> librosPorCalificar(int id){
+        SessionFactory factory; 
+        List<Solicitudes> misprestamos = null;
+        try{
+            factory = new Configuration().configure().buildSessionFactory();
+        }catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }    
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String sql = "SELECT * FROM solicitudes WHERE aceptado = TRUE AND califlibro = FALSE AND usridusuario = "+id;
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Solicitudes.class);
+            misprestamos = query.list();
+            tx.commit();
+            return misprestamos;
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            return null; 
+        }finally {
+            session.close(); 
+        } 
+    }
     
 }

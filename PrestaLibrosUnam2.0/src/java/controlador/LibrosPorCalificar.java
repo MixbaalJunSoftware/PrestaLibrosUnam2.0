@@ -10,10 +10,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
-import modelo.CalificacionLibroDAO;
-import modelo.Libro;
+import modelo.Solicitudes;
+import modelo.SolicitudesDAO;
 import modelo.Usuario;
 
 /**
@@ -23,21 +22,24 @@ import modelo.Usuario;
 @ManagedBean
 @ViewScoped
 public class LibrosPorCalificar implements Serializable{
-    private List<Libro> libros;
+    private List<Solicitudes> solicitudes;
     private Usuario usuario;
     private final FacesContext faceContext;
     private final HttpSession sesion;
+    
     public LibrosPorCalificar() {
         faceContext=FacesContext.getCurrentInstance();
         sesion = (HttpSession) faceContext.getExternalContext().getSession(false);
     }
-    public List<Libro> getLibros() {
-        return libros;
+    
+    public List<Solicitudes> getSolicitudes() {
+        return solicitudes;
     }
+    
     @PostConstruct
     public void librosCalificar() {
-        CalificacionLibroDAO lib = new CalificacionLibroDAO();
+        SolicitudesDAO sd = new SolicitudesDAO();
         usuario = (Usuario)sesion.getAttribute("usuario");
-        libros = lib.librosPorCalificar(usuario.getIdusuario());
+        solicitudes = sd.librosPorCalificar(usuario.getIdusuario());
     }
 }

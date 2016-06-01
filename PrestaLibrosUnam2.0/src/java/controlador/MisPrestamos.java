@@ -14,6 +14,8 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 import modelo.CalificacionUsuarioDAO;
 import modelo.Libro;
+import modelo.Solicitudes;
+import modelo.SolicitudesDAO;
 import modelo.Usuario;
 /**
  *
@@ -27,14 +29,16 @@ public class MisPrestamos implements Serializable{
     
     private final FacesContext faceContext;
     private final HttpSession sesion;
+    private List<Solicitudes> solicitudes;
+    
    
     public MisPrestamos() {
         faceContext=FacesContext.getCurrentInstance();
         sesion = (HttpSession) faceContext.getExternalContext().getSession(false);
     }
     
-    public List<Libro> getLibros() {
-        return libros;
+    public List<Solicitudes> getSolicitudes() {
+        return solicitudes;
     }
     
     public void listener(ActionEvent event){
@@ -42,8 +46,8 @@ public class MisPrestamos implements Serializable{
     }
     @PostConstruct
     public void misPrestamos() {
-        CalificacionUsuarioDAO lib = new CalificacionUsuarioDAO();
+        SolicitudesDAO sd = new SolicitudesDAO();
         usuario = (Usuario)sesion.getAttribute("usuario");
-        libros = lib.misPrestamos(usuario.getIdusuario());
+        solicitudes = sd.aceptadas(usuario.getIdusuario());
     }
 }
