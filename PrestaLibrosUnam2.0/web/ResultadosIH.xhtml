@@ -44,31 +44,30 @@ and open the template in the editor.
                     </h:form>
                     
                     <p:layoutUnit  resizable="true" position="center" style=" background: #0D1351" id="center">
-                        <h:form  >
-                            <p:dataScroller value="#{buscar.libros}" var="libro" style="background: #0D1351">
-                                <f:facet name="header" id="titulo" class="Principal" >
-                                Resultados de busqueda
-                            </f:facet>
+                        <h:form>
+                            <h1 style="  text-align: center; background: #0D1351; color: whitesmoke">Resultados de búsqueda</h1>
+                            <p:dataScroller value="#{buscar.libros}" var="libro" style="background: #0D1351; border: hidden">
+                                
  
-                            <h:panelGrid columns="3" style="background-color: black;text-align: left;align-content: center;width:100%" class="libros"  >
+                            <h:panelGrid columns="3" style="text-align: left;align-content: center;width:100%" class="libros"  >
                                 <p:graphicImage value="#{libro.fotoLibro}" id="foto_libro" width="170" height="200" />
                                 <p:outputPanel>
-                                    <h:panelGrid columns="2" cellpadding="10" >
-                                        <h:outputText value="Nombre: " style="font-weight: bold;color: whitesmoke" />
-                                        <h:outputText value="#{libro.nombre}" style="font-weight: bold;color: whitesmoke" />
+                                    <h:panelGrid columns="2" cellpadding="10" style=" border: hidden " >
+                                        <h:outputText value="Nombre: " style="font-weight: bold" />
+                                        <h:outputText value="#{libro.nombre}" style="font-weight: bold" />
  
-                                        <h:outputText value="Autor: " style="font-weight: bold; color: whitesmoke"/>
-                                        <h:outputText value="#{libro.autor}" style="font-weight: bold;color: whitesmoke"/>
+                                        <h:outputText value="Autor: " style="font-weight: bold"/>
+                                        <h:outputText value="#{libro.autor}" style="font-weight: bold"/>
  
-                                        <h:outputText value="Editorial: " style="font-weight: bold;color: whitesmoke"/>
-                                        <h:outputText value="#{libro.editorial}" style="font-weight: bold;color: whitesmoke"/>
+                                        <h:outputText value="Editorial: " style="font-weight: bold"/>
+                                        <h:outputText value="#{libro.editorial}" style="font-weight: bold"/>
                                
-                                        <h:outputText value="Genero: " style="font-weight: bold;color: whitesmoke" />
-                                        <h:outputText value="#{libro.genero}" style="font-weight: bold;color: whitesmoke" />
+                                        <h:outputText value="Genero: " style="font-weight: bold" />
+                                        <h:outputText value="#{libro.genero}" style="font-weight: bold" />
                                     </h:panelGrid>         
                                                           
                                 </p:outputPanel>
-                                <p:commandButton value="Ir a pagina del libro" action="LibroIH?faces-redirect=true" actionListener="#{entrar.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                <p:commandButton value="Ir a pagina del libro" action="LibroIH?faces-redirect=true" actionListener="#{entrar.listener}" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;">
                                     <f:attribute name="lb" value="#{libro}" />
                                 </p:commandButton> 
                             </h:panelGrid>
@@ -77,7 +76,7 @@ and open the template in the editor.
                             <h:outputText value="Puedes realizar una busqueda avanzada" style=" font-size: 30px; font-weight: bold; text-align: center"/>
                             <br/>
                             <br/>
-                            <p:commandButton  action="BusqAvanzadaIH?faces-redirect=true" value="Busqueda Avanzada" style=" background-color:white; color:#0D1351 "/>
+                            <p:commandButton  action="BusqAvanzadaIH?faces-redirect=true" value="Busqueda Avanzada" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"/>
                             <br/>
                             <br/>
                             <br/>
@@ -86,7 +85,7 @@ and open the template in the editor.
                             <br/>
                             <br/>
                             <br/>
-                            <p:commandButton  action="PrincipalIH?faces-redirect=true" value="Página principal" style=" background-color:white; color:#0D1351 "/>
+                            <p:commandButton  action="PrincipalIH?faces-redirect=true" value="Página principal" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"/>
                     
                             
                             

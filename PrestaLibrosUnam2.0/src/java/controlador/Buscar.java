@@ -131,18 +131,34 @@ public class Buscar implements Serializable{
                             return "ErrorBusquedaIH?faces-redirect=true";
                         return "ResultadosIH?faces-redirect=true";
                     }
-                }else{ 
-                    libros = libr.buscarAvanzada3(this.getTitulo(),this.getAutor());
-                    titulo="";
-                    autor="";
-                    //System.out.print("Caso3");
-                    if(libros.isEmpty())
-                            return "ErrorBusquedaIH?faces-redirect=true";
-                    return "ResultadosIH?faces-redirect=true";                    
                 }
+                    else if(this.getPais() != null && !this.getPais().equals("")){
+                       libros = libr.buscarAvanzada4(this.getTitulo(),this.getAutor(),this.getPais());
+                        titulo="";
+                        autor="";
+                        
+                        pais="";
+                        System.out.print("Caso4");
+                        if(libros.isEmpty())
+                            return "ErrorBusquedaIH?faces-redirect=true";
+                        return "ResultadosIH?faces-redirect=true";
+                      }          
+                
+                        else{ 
+                        libros = libr.buscarAvanzada3(this.getTitulo(),this.getAutor());
+                        titulo="";
+                        autor="";
+                        System.out.print("Caso3");
+                        if(libros.isEmpty())
+                                return "ErrorBusquedaIH?faces-redirect=true";
+                        return "ResultadosIH?faces-redirect=true";                    
+                
+                    }
+            
             }else{
+                System.out.print("Caso5");
                 FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Error", "Se requiere del autor la busqueda") );
+                context.addMessage(null, new FacesMessage("Error", "Se requiere del autor la busqueda") );
                return "";   
             }
         }else{

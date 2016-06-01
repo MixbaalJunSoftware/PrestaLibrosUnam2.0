@@ -86,6 +86,10 @@ public class LibroDAO extends AbstractDAO {
        return super.buscaAvanzada3(Libro.class, nombre, autor);
     }
     
+    public List buscarAvanzada4(String nombre, String autor, String pais){
+        return super.buscaAvanzada4(Libro.class, nombre, autor, pais);
+    }
+    
     public List librosDisponibles() throws DataAccessLayerException {
         return super.findDisponibles(Libro.class);
     } 

@@ -176,6 +176,24 @@ public abstract class AbstractDAO {
         }
         return objects;        
     }
+     protected List buscaAvanzada4(Class clazz, String nombre, String autor, String pais){
+        List objects = null;
+        try{
+            startOperation();
+            //System.out.print("FROM " + clazz.getName() +"lib"+ "WHERE lib.nombre like '%" + bus + "%'");
+            Query query = session.createQuery("FROM " + clazz.getName() + " WHERE UPPER(nombre) like UPPER('%" + nombre + "%') "
+                                             + "AND UPPER(autor) like UPPER('%" + autor + "%') AND UPPER(pais) like UPPER('%"+ pais + "%')");
+                                              
+           // System.out.print(query);
+            objects = query.list();
+            tx.commit();
+        } catch(HibernateException e){
+            handleException(e);            
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;        
+    }
      
     protected List buscaAvanzada3(Class clazz, String nombre, String autor){
         List objects = null;
