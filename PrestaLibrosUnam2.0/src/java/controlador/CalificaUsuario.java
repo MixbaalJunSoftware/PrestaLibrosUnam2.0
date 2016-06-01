@@ -101,6 +101,8 @@ public class CalificaUsuario implements Serializable{
         SolicitudesDAO sd = new SolicitudesDAO();
         solicitud.setCalifusr(true);
         sd.update(solicitud);
+        cu.setCalificacion(0);
+        cu.setComentarios(null);
         return "MisPrestamosIH?faces-redirect=true";
     }
     

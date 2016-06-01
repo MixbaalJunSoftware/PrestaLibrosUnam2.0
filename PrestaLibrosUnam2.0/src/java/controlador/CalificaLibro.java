@@ -82,6 +82,8 @@ public class CalificaLibro implements Serializable {
         solicitud.setCaliflibro(true);
         SolicitudesDAO sd = new SolicitudesDAO();
         sd.update(solicitud);
+        cl.setCalificacion(0);
+        cl.setComentario(null);
         return "LibrosPorCalificarIH?faces-redirect=true";
     }
 }
