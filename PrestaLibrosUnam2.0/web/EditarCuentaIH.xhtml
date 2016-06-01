@@ -40,17 +40,18 @@ and open the template in the editor.
                         <p:graphicImage value="#{entrar.usuario.getFotoUsr()}" id="fperfil"  style="width: 150px; height: 150px;" />
                     
                         <p:menu style="background-color: #0D1351; border-color: black;width: 215px; height: 300px; text-align: center; margin-left: 15px">
-                            <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white; width: 195px; font-size: xx-large"/>
-                            <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
-                            <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: xx-large "/>
-                            <p:menuitem value="Solicitudes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large ">
+                            <p:menuitem value="Mi cuenta" outcome="PerfilIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white; width: 195px; font-size: x-large"/>
+                            <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style="background:#0D1351; color: white; width: 195px; font-size: x-large">
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:menuitem>
-                            <p:menuitem value="Editar Cuenta" action="EditarCuentaIH?faces-redirect=true" actionListener="#{editarUsuario.listener}" style="background:#0D1351; color: white; width: 195px; font-size: xx-large">
+                            <p:menuitem value="Mis libros" outcome="MisLibrosIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: x-large "/>
+                            <p:menuitem value="Crear Libro" outcome="CrearLibroIH?faces-redirect=true" update="messages" style="background:#0D1351; color: white;width: 195px; font-size: x-large "/>
+                            <p:menuitem value="Solicitudes Pendientes" action="SolicitudesIH?faces-redirect=true" actionListener="#{verSolicitudes.listener}" style="background:#0D1351; color: white; width: 195px; font-size: large ">
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
-                            </p:menuitem>                    
-                            <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
-                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
+                            </p:menuitem>
+                                                
+                            <p:menuitem value="Prestados" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: x-large "/>                 
+                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: x-large "/>
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>

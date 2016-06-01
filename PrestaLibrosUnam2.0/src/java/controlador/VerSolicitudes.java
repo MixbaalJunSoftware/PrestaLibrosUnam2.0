@@ -8,13 +8,12 @@ package controlador;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
-import modelo.CalificacionUsuarioDAO;
 import modelo.Solicitudes;
 import modelo.SolicitudesDAO;
 import modelo.Usuario;
@@ -36,13 +35,11 @@ public class VerSolicitudes implements Serializable{
     public VerSolicitudes() {
         faceContext=FacesContext.getCurrentInstance();
         sesion = (HttpSession) faceContext.getExternalContext().getSession(false);
-        
+        usuario = (Usuario)sesion.getAttribute("usuario");
     }
-    
-    
+
     private Usuario usuario;
     private List<Solicitudes> lsolicitud;
-
     
     
     public Usuario getUsuario() {
@@ -54,6 +51,8 @@ public class VerSolicitudes implements Serializable{
     }
 
     public List<Solicitudes> getLsolicitud() {
+        SolicitudesDAO sd = new SolicitudesDAO();
+        lsolicitud = sd.pendientesUsuario(usuario.getIdusuario());
         return lsolicitud;
     }
 
@@ -62,17 +61,6 @@ public class VerSolicitudes implements Serializable{
     }
     
     public void listener(ActionEvent event){
-        usuario = (Usuario)event.getComponent().getAttributes().get("usuario");
-        
     }
-    
-    
 
-    @PostConstruct
-    public void verSolicitudes(){
-        SolicitudesDAO sd = new SolicitudesDAO();
-        usuario = (Usuario)sesion.getAttribute("usuario");
-        lsolicitud = sd.pendientesUsuario(usuario.getIdusuario());
-    }
-    
 }

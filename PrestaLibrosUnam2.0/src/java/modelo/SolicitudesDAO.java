@@ -81,7 +81,7 @@ public class SolicitudesDAO extends AbstractDAO {
     
     public List<Solicitudes> pendientesUsuario(int id){
         SessionFactory factory; 
-        List<Solicitudes> solicitudes = null;
+        List<Solicitudes> misprestamos = null;
         try{
             factory = new Configuration().configure().buildSessionFactory();
         }catch (Throwable ex) { 
@@ -95,15 +95,15 @@ public class SolicitudesDAO extends AbstractDAO {
             String sql = "SELECT * FROM solicitudes WHERE aceptado = FALSE AND libroidlibro IN (SELECT idlibro FROM libro WHERE usridusuario = "+id+")";
             SQLQuery query = session.createSQLQuery(sql);
             query.addEntity(Solicitudes.class);
-            solicitudes = query.list();
+            misprestamos = query.list();
             tx.commit();
-            return solicitudes;
+            return misprestamos;
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             return null; 
         }finally {
             session.close(); 
-        }  
+        }   
     }
      
     public List pendientesLibro(int idLibro){
