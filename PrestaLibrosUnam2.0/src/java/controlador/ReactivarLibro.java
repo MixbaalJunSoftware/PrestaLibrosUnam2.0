@@ -14,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import modelo.Libro;
+import modelo.LibroDAO;
 import modelo.Solicitudes;
 import modelo.SolicitudesDAO;
 
@@ -44,14 +45,17 @@ public class ReactivarLibro implements Serializable{
             //Date fecha = sumarRestarDiasFecha(solicitud.getFecha(),7);//fecha de una semana despues de hacer la solicitud
             //if( fecha.compareTo(new Date())> 0){ //comprobar si aun no se llega a dicha fecha
                 FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage("Error \n Debes subir una imagen","") );
+                context.addMessage(null, new FacesMessage("Error \n Aun no han calificado el libro","") );
                 return "";
             //}
         }
-        solicitud.getLibro().setDisponible(true);
+        Libro libro = solicitud.getLibro();
+        libro.setDisponible(true);
         SolicitudesDAO sd = new SolicitudesDAO();
+        LibroDAO l = new LibroDAO();
+        l.update(libro);
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Exito", "Se ha Reactivado el libro "+solicitud.getLibro().getNombre()) );
+        context.addMessage(null, new FacesMessage("Exito", "Se ha Reactivado el libro "+libro.getNombre()) );
         sd.delete(solicitud);
         return "MisPrestamosIH?faces-redirect=true";
     }
