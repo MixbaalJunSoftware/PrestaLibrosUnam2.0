@@ -50,16 +50,15 @@ and open the template in the editor.
                                 <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:menuitem>                    
                             <p:menuitem value="Prestamos" action="MisPrestamosIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>                 
-                            <p:menuitem value="LibrosPorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
+                            <p:menuitem value="PorCalificar" action="LibrosPorCalificarIH?faces-redirect=true" style="background:#0D1351; color: white; width: 195px; font-size: xx-large "/>
                         </p:menu>
                     </h:form>  
                 </p:layoutUnit>    
                 <p:layoutUnit position="center"  style="background-color:#0D1351">
                     <h:form>
+                        <h1 style="  text-align: center; background: #0D1351; color: whitesmoke">Libros por calificar</h1>
                         <p:dataScroller value="#{librosPorCalificar.solicitudes}" var="solicitud">
-                            <f:facet name="header">
-                               Mis Prestamos
-                            </f:facet>
+                            
                          
                             <h:panelGrid columns="3" style="width:70%;text-align: center;align-content: center" cellpadding="5">   
                                 <p:graphicImage value="#{solicitud.libro.fotoLibro}" id="foto_libro" width="170" height="200" />
@@ -75,7 +74,7 @@ and open the template in the editor.
                                        <h:outputText value="#{solicitud.libro.editorial}" style="font-weight: bold"/>
                                     </h:panelGrid>         
                                 </p:outputPanel>
-                                <p:commandButton value="Califica Libro" action="CalificaLibrosIH?faces-redirect=true" actionListener="#{calificaLibro.listener}" style="font-weight: bold; background-color: whitesmoke; color: black">
+                                <p:commandButton value="Califica Libro" action="CalificaLibrosIH?faces-redirect=true" actionListener="#{calificaLibro.listener}" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;">
                                     <f:attribute name="lb" value="#{solicitud}" />
                                 </p:commandButton> 
                                 

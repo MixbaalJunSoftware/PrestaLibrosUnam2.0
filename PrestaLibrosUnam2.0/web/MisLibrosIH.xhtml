@@ -79,10 +79,10 @@ and open the template in the editor.
 
                                 </p:outputPanel>
                                  <p:growl id="growl" showDetail="true" sticky="true" />
-                                 <p:commandButton action="ActualizarLibroIH?faces-redirect=true" value="Editar" actionListener="#{actualizarLibro.listener}">
+                                 <p:commandButton action="ActualizarLibroIH?faces-redirect=true" value="Editar" actionListener="#{actualizarLibro.listener}" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;">
                                     <f:attribute name="libro1" value= "#{libro}" />
                                 </p:commandButton>
-                                <p:commandButton  update="growl" action="#{eliminarLibro.EliminarLibro}" value="Eliminar" actionListener="#{eliminarLibro.listener}" >
+                                 <p:commandButton  update="growl" action="#{eliminarLibro.EliminarLibro}" value="Eliminar" actionListener="#{eliminarLibro.listener}" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"  >
                                     <f:attribute name="libro1" value= "#{libro}" />
                                     <p:confirm header="Confirmación" message="¿Seguro desea eliminar el libro?" icon="ui-icon-alert" />
                                 </p:commandButton>

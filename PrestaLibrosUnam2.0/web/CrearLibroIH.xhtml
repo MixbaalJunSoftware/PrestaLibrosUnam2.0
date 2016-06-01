@@ -48,7 +48,8 @@
                     </h:form>  
                 </p:layoutUnit>
                 <p:layoutUnit position="center"  style="background-color:#0D1351">
-                    <p:panel header="Crar un Libro">
+                    <h1 style="  text-align: center; background: #0D1351; color: whitesmoke">Crear libro</h1>
+                    <p:panel style=" border: hidden ">
                         <h:form enctype="multipart/form-data">
                             <p:panelGrid columns="2">
                                 <h:outputText value="sube una imagen:" />  
@@ -76,10 +77,10 @@
                             </h:panelGrid>
                             <br/>
                             <p:growl id="growl" showDetail="true" sticky="true" />
-                            <p:commandButton id="crear" value="Crear" action="#{crearLibro.crearLibro()}" actionListener="#{crearLibro.listener}" update="growl" >
+                            <p:commandButton id="crear" value="Crear" action="#{crearLibro.crearLibro()}" actionListener="#{crearLibro.listener}" update="growl" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;" >
                             <f:attribute name="usuario" value="#{entrar.usuario}" />
                             </p:commandButton>
-                            <p:commandButton value="volver" action="PerfilIH?faces-redirect=true"/>
+                            <p:commandButton value="volver" action="PerfilIH?faces-redirect=true" style="background: rgba(0,0,0,0); color: #3a7999; box-shadow: inset 0 0 0 3px #3a7999;"/>
                             <br/>
                         </h:form>
                     </p:panel>
